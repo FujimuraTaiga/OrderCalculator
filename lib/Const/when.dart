@@ -1,0 +1,4 @@
+enum When{
+  today,
+  tomorrow,
+}
