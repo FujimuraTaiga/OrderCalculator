@@ -1,6 +1,6 @@
-# order_support
+# OderCalculator
 
-楽膳向け 発注をサポートするアプリ
+バイト先の発注をサポートするアプリ
 
 ## Getting Started
 
