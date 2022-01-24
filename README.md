@@ -14,4 +14,5 @@ ChangeNotifierを使ったMVVMを採用。
 牛、豚、鳥それぞれに対応するAmountDataインスタンスを用意。
 
 ### SlectButton，FormItemクラス　---View
-Amountクラスを監視。変更があればUIを更新する。
+
+Amountを監視。変更があればUIを更新する。
