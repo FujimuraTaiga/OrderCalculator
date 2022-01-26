@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:order_support/Model/amount.dart';
 import 'package:provider/provider.dart';
 
-import 'OrderForm/order_form.dart';
-import 'SalesForm/sales_form.dart';
+import 'package:order_support/Model/sales.dart';
+import 'package:order_support/Model/amount.dart';
+
+import 'package:order_support/UI/SalesForm/sales_form.dart';
+import 'package:order_support/UI/AmountForm/amount_form.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -12,14 +14,26 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final amount = Amount();
+    final sales = SalesE();
 
-    return ChangeNotifierProvider<Amount>.value(
-      value: amount,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Amount>.value(value: amount),
+        ChangeNotifierProvider<SalesE>.value(value: sales),
+      ],
       child: Scaffold(
+        appBar: AppBar(
+          bottom: const TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.attach_money),),
+              Tab(icon: Icon(Icons.set_meal),),
+            ],
+          ),
+        ),
         body: TabBarView(
             children: [
               SalesForm(),
-              const OrderForm(),
+              const AmountForm(),
             ]
         ),
       ),

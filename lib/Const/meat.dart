@@ -1,25 +1,40 @@
-class Meat{
-  late String name;
-  late int packPerSales;
+enum Meat{
+  beef,
+  pork,
+  chicken,
 }
 
-class Beef implements Meat {
-  @override
-  String name = '牛';
-  @override
-  int packPerSales = 60000;
+class Beef{
+  static String name = '牛';
+  static int packPerSales = 60000;
+}
+class Pork{
+  static String name = '豚';
+  static int packPerSales = 70000;
+}
+class Chicken{
+  static String name = '鳥';
+  static int packPerSales = 60000;
 }
 
-class Pork implements Meat{
-  @override
-  String name = '豚';
-  @override
-  int packPerSales = 70000;
+String meatName(Meat meat){
+  switch(meat){
+    case Meat.beef:
+      return Beef.name;
+    case Meat.pork:
+      return Pork.name;
+    case Meat.chicken:
+      return Chicken.name;
+  }
 }
 
-class Chicken implements Meat{
-  @override
-  String name = '鳥';
-  @override
-  int packPerSales = 60000;
+int packPerSales(Meat meat){
+  switch(meat){
+    case Meat.beef:
+      return Beef.packPerSales;
+    case Meat.pork:
+      return Pork.packPerSales;
+    case Meat.chicken:
+      return Chicken.packPerSales;
+  }
 }

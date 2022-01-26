@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:order_support/Const/meat.dart';
+import 'package:order_support/Model/amount.dart';
 import 'package:provider/provider.dart';
 
-import 'package:order_support/Model/amount.dart';
 import 'package:order_support/Const/when.dart';
-import 'package:order_support/Const/meat.dart';
 
 class SelectButton extends StatelessWidget {
 
@@ -16,11 +16,10 @@ class SelectButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final amount = context.watch<Amount>();
-    final data = amount.data[meat]!;
 
     return DropdownButton<int>(
       items: items(20),
-      value: (when == When.today) ? data.today : data.tomorrow,
+      value: value(amount),
       onChanged: (int? newValue) => onChanged(amount, newValue!),
     );
   }
@@ -41,10 +40,27 @@ class SelectButton extends StatelessWidget {
   }
 
   void onChanged(Amount amount, int num){
-    if(when == When.today){
-      amount.setToday(meat,num);
-    }else if(when == When.tomorrow){
-      amount.setTomorrow(meat,num);
+    switch(meat){
+      case Meat.beef:
+        amount.setBeef(when,num);
+        break;
+      case Meat.pork:
+        amount.setPork(when,num);
+        break;
+      case Meat.chicken:
+        amount.setChicken(when, num);
+        break;
+    }
+  }
+
+  int value(Amount amount){
+    switch(meat){
+      case Meat.beef:
+        return amount.data[when]!.beef;
+      case Meat.pork:
+        return amount.data[when]!.pork;
+      case Meat.chicken:
+        return amount.data[when]!.chicken;
     }
   }
 }

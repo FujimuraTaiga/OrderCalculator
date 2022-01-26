@@ -1,47 +1,77 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:order_support/Const/meat.dart';
+import 'package:order_support/Const/when.dart';
 import 'package:order_support/Model/sales.dart';
 
 class AmountData{
-  int today = 0;
-  int tomorrow = 0;
-  String order = '0';
+
+  int date;
+  bool isHoliday = false;
+  int beef = 0;
+  int pork = 0;
+  int chicken = 0;
+
+  AmountData(this.date);
 }
 
 class Amount extends ChangeNotifier{
 
   final data = {
-    Beef() : AmountData(),
-    Pork() : AmountData(),
-    Chicken() : AmountData(),
+    When.today : AmountData(DateTime.now().day),
+    When.tomorrow : AmountData(DateTime.now().add(const Duration(days: 1)).day),
+    When.dayAfterTomorrow : AmountData(DateTime.now().add(const Duration(days: 2)).day),
   };
-  final sales = Sales();
 
-  void setToday(Meat meat,int today){
-    data[meat]!.today = today;
-    calcOrder();
+  void setIsHoliday(When when){
+    data[when]!.isHoliday = !data[when]!.isHoliday;
     notifyListeners();
   }
 
-  void setTomorrow(Meat meat,int tomorrow){
-    data[meat]!.tomorrow = tomorrow;
-    calcOrder();
+  void setBeef(When when,int beef){
+    data[when]!.beef = beef;
     notifyListeners();
   }
 
-  void setSales(int weekday,int holiday){
-    sales.weekdaySales = weekday;
-    sales.holidaySales = holiday;
-    calcOrder();
+  void setPork(When when,int pork){
+    data[when]!.pork = pork;
     notifyListeners();
   }
 
-  //発注数を計算
-  void calcOrder(){
-    for(var meat in data.keys){
-      int calc = ((sales.weekdaySales+sales.holidaySales+sales.holidaySales)/meat.packPerSales).round()-data[meat]!.today-data[meat]!.tomorrow;
-      data[meat]!.order = (calc>0) ? '$calc' : '0';
+  void setChicken(When when,int chicken){
+    data[when]!.chicken = chicken;
+    notifyListeners();
+  }
+
+  int order(Meat meat, Sales sales){
+    int today = 0;
+    int tomorrow = 0;
+    switch(meat){
+      case Meat.beef:
+        today = data[When.today]!.beef;
+        tomorrow = data[When.tomorrow]!.beef;
+        break;
+      case Meat.pork:
+        today = data[When.today]!.pork;
+        tomorrow = data[When.tomorrow]!.pork;
+        break;
+      case Meat.chicken:
+        today = data[When.today]!.chicken;
+        tomorrow = data[When.tomorrow]!.chicken;
+        break;
     }
+    notifyListeners();
+    int order = ((sales.holidaySales*countHoliday()+sales.weekdaySales*(3-countHoliday()))/packPerSales(meat)).round()-today-tomorrow;
+    return order<0 ? 0 : order;
+  }
+
+  int countHoliday(){
+    int count = 0;
+    for(var data in data.values){
+      if(data.isHoliday){
+        count++;
+      }
+    }
+    return count;
   }
 }
