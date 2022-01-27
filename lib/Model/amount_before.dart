@@ -20,7 +20,7 @@ class AmountBefore extends ChangeNotifier{
     Meat.pork : AmountDataBefore(Pork.packPerSales),
     Meat.chicken : AmountDataBefore(Chicken.packPerSales),
   };
-  final sales = Sales();
+  final sales = SalesData();
 
   void setToday(Meat meat,int today){
     data[meat]!.today = today;

@@ -28,22 +28,25 @@ class Amount extends ChangeNotifier{
     notifyListeners();
   }
 
-  void setBeef(When when,int beef){
+  void setBeef(When when,int beef,SalesData sales){
     data[when]!.beef = beef;
+    data[When.dayAfterTomorrow]!.beef = order(Meat.beef,sales);
     notifyListeners();
   }
 
-  void setPork(When when,int pork){
+  void setPork(When when,int pork,SalesData sales){
     data[when]!.pork = pork;
+    data[When.dayAfterTomorrow]!.pork = order(Meat.pork,sales);
     notifyListeners();
   }
 
-  void setChicken(When when,int chicken){
+  void setChicken(When when,int chicken,SalesData sales){
     data[when]!.chicken = chicken;
+    data[When.dayAfterTomorrow]!.chicken = order(Meat.chicken,sales);
     notifyListeners();
   }
 
-  int order(Meat meat, Sales sales){
+  int order(Meat meat, SalesData sales){
     int today = 0;
     int tomorrow = 0;
     switch(meat){
@@ -60,7 +63,6 @@ class Amount extends ChangeNotifier{
         tomorrow = data[When.tomorrow]!.chicken;
         break;
     }
-    notifyListeners();
     int order = ((sales.holidaySales*countHoliday()+sales.weekdaySales*(3-countHoliday()))/packPerSales(meat)).round()-today-tomorrow;
     return order<0 ? 0 : order;
   }

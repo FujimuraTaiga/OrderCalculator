@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:order_support/Const/meat.dart';
 import 'package:order_support/Model/amount.dart';
+import 'package:order_support/Model/sales.dart';
 import 'package:provider/provider.dart';
 
 import 'package:order_support/Const/when.dart';
@@ -15,12 +16,13 @@ class SelectButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final amount = context.watch<Amount>();
+    final amount = Provider.of<Amount>(context);
+    final sales = Provider.of<Sales>(context);
 
     return DropdownButton<int>(
       items: items(20),
       value: value(amount),
-      onChanged: (int? newValue) => onChanged(amount, newValue!),
+      onChanged: (int? newValue) => onChanged(amount, newValue!,sales.data),
     );
   }
 
@@ -39,16 +41,16 @@ class SelectButton extends StatelessWidget {
     );
   }
 
-  void onChanged(Amount amount, int num){
+  void onChanged(Amount amount, int num, SalesData sales){
     switch(meat){
       case Meat.beef:
-        amount.setBeef(when,num);
+        amount.setBeef(when,num,sales);
         break;
       case Meat.pork:
-        amount.setPork(when,num);
+        amount.setPork(when,num,sales);
         break;
       case Meat.chicken:
-        amount.setChicken(when, num);
+        amount.setChicken(when,num,sales);
         break;
     }
   }

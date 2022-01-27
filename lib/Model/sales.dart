@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class Sales{
+class SalesData{
   int weekdaySales = 0;
   int holidaySales = 0;
 }
 
-class SalesE extends ChangeNotifier{
-  final sales = Sales();
+class Sales extends ChangeNotifier{
+  final data = SalesData();
 
   void setWeekdaySales(int weekdaySales){
-    sales.weekdaySales = weekdaySales;
+    data.weekdaySales = weekdaySales;
     notifyListeners();
   }
 
   void setHolidaySales(int holidaySales){
-    sales.holidaySales = holidaySales;
+    data.holidaySales = holidaySales;
     notifyListeners();
   }
 }

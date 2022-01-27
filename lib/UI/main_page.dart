@@ -14,12 +14,12 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final amount = Amount();
-    final sales = SalesE();
+    final sales = Sales();
 
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<Amount>.value(value: amount),
-        ChangeNotifierProvider<SalesE>.value(value: sales),
+        ChangeNotifierProvider<Sales>.value(value: sales),
       ],
       child: Scaffold(
         appBar: AppBar(

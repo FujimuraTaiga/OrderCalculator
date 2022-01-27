@@ -12,7 +12,7 @@ class SalesForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final sales = Provider.of<SalesE>(context);
+    final sales = Provider.of<Sales>(context);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +29,7 @@ class SalesForm extends StatelessWidget {
     );
   }
 
-  void onPressed(SalesE sales){
+  void onPressed(Sales sales){
     if(weekdaySales.text == ''||holidaySales.text == ''){
 
     }else{

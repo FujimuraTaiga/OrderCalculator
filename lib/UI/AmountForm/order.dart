@@ -17,7 +17,7 @@ class Order extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final amount = Provider.of<Amount>(context);
-    final sales = Provider.of<SalesE>(context);
+    final sales = Provider.of<Sales>(context);
 
     return SizedBox(
       height: 250,
@@ -27,15 +27,15 @@ class Order extends StatelessWidget {
           Text('${amount.data[when]!.date}日'),
           SizedBox(
             height: height,
-            child: Center(child: orderText('${amount.order(Meat.beef, sales.sales)}P')),
+            child: Center(child: orderText('${amount.order(Meat.beef, sales.data)}P')),
           ),
           SizedBox(
             height: height,
-            child: Center(child: orderText('${amount.order(Meat.pork, sales.sales)}P')),
+            child: Center(child: orderText('${amount.order(Meat.pork, sales.data)}P')),
           ),
           SizedBox(
             height: height,
-            child: Center(child: orderText('${amount.order(Meat.chicken, sales.sales)}P')),
+            child: Center(child: orderText('${amount.order(Meat.chicken, sales.data)}P')),
           ),
           HolidaySwitch(when),
         ],
