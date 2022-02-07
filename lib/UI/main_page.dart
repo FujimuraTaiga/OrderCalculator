@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:order_support/Model/sales.dart';
-import 'package:order_support/Model/amount.dart';
-
-import 'package:order_support/UI/SalesForm/sales_form.dart';
+import 'package:order_support/Model/view_model.dart';
 import 'package:order_support/UI/AmountForm/amount_form.dart';
 
 class MainPage extends StatelessWidget {
@@ -13,29 +10,14 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final amount = Amount();
-    final sales = Sales();
+    final vm = ViewModel();
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<Amount>.value(value: amount),
-        ChangeNotifierProvider<Sales>.value(value: sales),
+        ChangeNotifierProvider<ViewModel>.value(value: vm),
       ],
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.attach_money),),
-              Tab(icon: Icon(Icons.set_meal),),
-            ],
-          ),
-        ),
-        body: TabBarView(
-            children: [
-              SalesForm(),
-              const AmountForm(),
-            ]
-        ),
+      child: const Scaffold(
+        body: AmountForm(),
       ),
     );
   }

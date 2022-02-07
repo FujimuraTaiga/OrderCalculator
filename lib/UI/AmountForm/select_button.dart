@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:order_support/Const/meat.dart';
-import 'package:order_support/Model/amount.dart';
-import 'package:order_support/Model/sales.dart';
 import 'package:provider/provider.dart';
 
-import 'package:order_support/Const/when.dart';
+import 'package:order_support/Const/item.dart';
+import 'package:order_support/Const/date.dart';
+
+import 'package:order_support/Model/view_model.dart';
 
 class SelectButton extends StatelessWidget {
 
-  final Meat meat;
-  final When when;
+  final Date date;
+  final Item item;
 
-  const SelectButton(this.meat,this.when,{Key? key}) : super(key: key);
+  const SelectButton(this.date, this.item, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    final amount = Provider.of<Amount>(context);
-    final sales = Provider.of<Sales>(context);
+    final vm = Provider.of<ViewModel>(context);
 
     return DropdownButton<int>(
       items: items(20),
-      value: value(amount),
-      onChanged: (int? newValue) => onChanged(amount, newValue!,sales.data),
+      value: value(vm),
+      onChanged: (int? newValue) => onChanged(vm, newValue!),
     );
   }
 
@@ -41,28 +40,27 @@ class SelectButton extends StatelessWidget {
     );
   }
 
-  void onChanged(Amount amount, int num, SalesData sales){
-    switch(meat){
-      case Meat.beef:
-        amount.setBeef(when,num,sales);
+  int value(ViewModel vm){
+    int value = 0;
+    switch(date){
+      case Date.today:
+        value = vm.itemData[item]!.today;
         break;
-      case Meat.pork:
-        amount.setPork(when,num,sales);
-        break;
-      case Meat.chicken:
-        amount.setChicken(when,num,sales);
+      case Date.tomorrow:
+        value = vm.itemData[item]!.tomorrow;
         break;
     }
+    return value;
   }
 
-  int value(Amount amount){
-    switch(meat){
-      case Meat.beef:
-        return amount.data[when]!.beef;
-      case Meat.pork:
-        return amount.data[when]!.pork;
-      case Meat.chicken:
-        return amount.data[when]!.chicken;
+  void onChanged(ViewModel vm, int amount){
+    switch(date){
+      case Date.today:
+        vm.setTodayAmount(item, amount);
+        break;
+      case Date.tomorrow:
+        vm.setTomorrowAmount(item, amount);
+        break;
     }
   }
 }

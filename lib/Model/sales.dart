@@ -1,20 +1,22 @@
-import 'package:flutter/material.dart';
+class Sales{
 
-class SalesData{
-  int weekdaySales = 0;
-  int holidaySales = 0;
-}
+  int today = 0;
+  int tomorrow = 0;
+  int dayAfter = 0;
 
-class Sales extends ChangeNotifier{
-  final data = SalesData();
-
-  void setWeekdaySales(int weekdaySales){
-    data.weekdaySales = weekdaySales;
-    notifyListeners();
+  void setToday(int today){
+    this.today = today;
   }
 
-  void setHolidaySales(int holidaySales){
-    data.holidaySales = holidaySales;
-    notifyListeners();
+  void setTomorrow(int tomorrow){
+    this.tomorrow = tomorrow;
+  }
+
+  void setDayAfter(int dayAfter){
+    this.dayAfter = dayAfter;
+  }
+
+  int sumSales(){
+    return today + tomorrow + dayAfter;
   }
 }

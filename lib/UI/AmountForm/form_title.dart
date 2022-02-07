@@ -28,7 +28,7 @@ class FormTitle extends StatelessWidget {
           ),
           SizedBox(
             height: height,
-            child: const Center(child: Text('休日')),
+            child: const Center(child: Text('売り上げ')),
           ),
         ],
       ),

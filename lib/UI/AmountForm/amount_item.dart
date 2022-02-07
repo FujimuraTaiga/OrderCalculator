@@ -1,32 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:order_support/Const/meat.dart';
-import 'package:order_support/Const/when.dart';
-import 'package:order_support/Model/amount.dart';
-import 'package:order_support/UI/AmountForm/holiday_switch.dart';
+
+import 'package:order_support/Const/date.dart';
+import 'package:order_support/Const/item.dart';
+
+import 'package:order_support/UI/AmountForm/sales_field.dart';
 import 'package:order_support/UI/AmountForm/select_button.dart';
-import 'package:provider/provider.dart';
 
 class AmountItem extends StatelessWidget {
 
-  final When when;
+  final Date date;
 
-  const AmountItem(this.when, {Key? key}) : super(key: key);
+  const AmountItem(this.date, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    final amount = Provider.of<Amount>(context);
 
     return SizedBox(
       height: 250,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text('${amount.data[when]!.date}日'),
-          SelectButton(Meat.beef, when),
-          SelectButton(Meat.pork, when),
-          SelectButton(Meat.chicken, when),
-          HolidaySwitch(when),
+          Text('${date.day}日'),
+          SelectButton(date,Item.beef),
+          SelectButton(date,Item.pork),
+          SelectButton(date,Item.chicken),
+          SizedBox(
+            height: 30,
+            width: 70,
+            child: SalesField(),
+          ),
         ],
       ),
     );
