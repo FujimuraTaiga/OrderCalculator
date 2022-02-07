@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:order_support/Model/view_model.dart';
-import 'package:order_support/UI/AmountForm/amount_form.dart';
+import 'package:order_support/UI/MainPage/AmountForm/amount_form.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class MainPage extends StatelessWidget {
         ChangeNotifierProvider<ViewModel>.value(value: vm),
       ],
       child: const Scaffold(
-        body: AmountForm(),
+        body: Center(child: AmountForm()),
       ),
     );
   }

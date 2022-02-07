@@ -12,6 +12,15 @@ class ViewModel with ChangeNotifier{
   };
   final sales = Sales();
 
+  void init(){
+    for(var data in itemData.values){
+      data.setToday(0);
+      data.setTomorrow(0);
+      data.setOrder(sales);
+    }
+    notifyListeners();
+  }
+
   void setTodayAmount(Item item, int today){
     itemData[item]!.setToday(today);
     itemData[item]!.setOrder(sales);
@@ -26,20 +35,13 @@ class ViewModel with ChangeNotifier{
 
   void setTodaySales(int today){
     sales.setToday(today);
-    notifyListeners();
   }
 
   void setTomorrowSales(int tomorrow){
     sales.setTomorrow(tomorrow);
-    notifyListeners();
   }
 
   void setDayAfterSales(int dayAfter){
     sales.setDayAfter(dayAfter);
-    notifyListeners();
-  }
-
-  int getOrder(Item item){
-    return itemData[item]!.order;
   }
 }

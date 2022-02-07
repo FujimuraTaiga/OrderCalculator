@@ -19,6 +19,6 @@ class ItemData{
   }
 
   void setOrder(Sales sales){
-    order = sales.sumSales() - today - tomorrow;
+    order = (sales.sumSales()/item.packPerSales).ceil() - today - tomorrow;
   }
 }

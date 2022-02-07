@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:order_support/Const/size.dart';
 import 'package:provider/provider.dart';
 
 import 'package:order_support/Const/item.dart';
@@ -18,10 +19,13 @@ class SelectButton extends StatelessWidget {
 
     final vm = Provider.of<ViewModel>(context);
 
-    return DropdownButton<int>(
-      items: items(20),
-      value: value(vm),
-      onChanged: (int? newValue) => onChanged(vm, newValue!),
+    return SizedBox(
+      width: WidgetSize.amountForm.width,
+      child: DropdownButton<int>(
+        items: items(20),
+        value: value(vm),
+        onChanged: (int? newValue) => onChanged(vm, newValue!),
+      ),
     );
   }
 
