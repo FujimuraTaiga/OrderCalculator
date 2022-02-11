@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:order_support/Model/view_model.dart';
-import 'package:order_support/UI/MainPage/AmountForm/amount_form.dart';
+import 'package:order_support/ViewModel/view_model.dart';
+import 'package:order_support/View/MainPage/AmountForm/amount_form.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -16,8 +16,11 @@ class MainPage extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<ViewModel>.value(value: vm),
       ],
-      child: const Scaffold(
-        body: Center(child: AmountForm()),
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
+        child: const Scaffold(
+          body: AmountForm(),
+        ),
       ),
     );
   }

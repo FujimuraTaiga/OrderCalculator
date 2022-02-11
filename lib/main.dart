@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:order_support/UI/main_page.dart';
+import 'package:order_support/View/main_page.dart';
 
 void main(){
   runApp(

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:order_support/Const/item.dart';
 import 'package:order_support/Const/date.dart';
 
-import 'package:order_support/Model/view_model.dart';
+import 'package:order_support/ViewModel/view_model.dart';
 
 class SelectButton extends StatelessWidget {
 
@@ -53,6 +53,9 @@ class SelectButton extends StatelessWidget {
       case Date.tomorrow:
         value = vm.itemData[item]!.tomorrow;
         break;
+      case Date.dayAfter:
+        value = vm.itemData[item]!.order;
+        break;
     }
     return value;
   }
@@ -64,6 +67,8 @@ class SelectButton extends StatelessWidget {
         break;
       case Date.tomorrow:
         vm.setTomorrowAmount(item, amount);
+        break;
+      case Date.dayAfter:
         break;
     }
   }

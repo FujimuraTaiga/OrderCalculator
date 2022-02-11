@@ -14,8 +14,6 @@ class ViewModel with ChangeNotifier{
 
   void init(){
     for(var data in itemData.values){
-      data.setToday(0);
-      data.setTomorrow(0);
       data.setOrder(sales);
     }
     notifyListeners();
