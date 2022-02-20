@@ -5,8 +5,8 @@ import 'package:order_support/Const/size.dart';
 
 import 'package:order_support/ViewModel/view_model.dart';
 
-import 'package:order_support/View/FormItem/sales_field.dart';
-import 'package:order_support/View/MainPage/AmountForm/sales_date.dart';
+import 'package:order_support/View/PackPerSalesForm/sales_field.dart';
+import 'package:order_support/View/AmountForm/sales_date.dart';
 
 class SalesForm extends StatelessWidget {
 

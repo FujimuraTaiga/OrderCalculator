@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:order_support/Const/item.dart';
 
-import 'package:order_support/View/MainPage/AmountForm/amount_item.dart';
-import 'package:order_support/View/MainPage/AmountForm/sales_form.dart';
+import 'package:order_support/View/AmountForm/amount_item.dart';
+import 'package:order_support/View/AmountForm/sales_form.dart';
 
 import 'amount_header.dart';
 

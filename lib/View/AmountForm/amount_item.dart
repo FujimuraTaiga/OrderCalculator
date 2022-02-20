@@ -7,7 +7,7 @@ import 'package:order_support/Const/item.dart';
 
 import 'package:order_support/ViewModel/view_model.dart';
 
-import 'package:order_support/View/FormItem/select_button.dart';
+import 'package:order_support/View/AmountForm/select_button.dart';
 
 class AmountItem extends StatelessWidget {
   final Item item;
