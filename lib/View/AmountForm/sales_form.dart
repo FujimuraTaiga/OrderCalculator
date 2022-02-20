@@ -5,7 +5,7 @@ import 'package:order_support/Const/size.dart';
 
 import 'package:order_support/ViewModel/view_model.dart';
 
-import 'package:order_support/View/PackPerSalesForm/sales_field.dart';
+import 'package:order_support/View/AmountForm/sales_field.dart';
 import 'package:order_support/View/AmountForm/sales_date.dart';
 
 class SalesForm extends StatelessWidget {
@@ -20,6 +20,10 @@ class SalesForm extends StatelessWidget {
   Widget build(BuildContext context) {
 
     ViewModel vm = Provider.of<ViewModel>(context);
+
+    final today = TextEditingController(text: '${vm.sales.getToday()}');
+    final tomorrow = TextEditingController(text: '${vm.sales.getTomorrow()}');
+    final dayAfter = TextEditingController(text: '${vm.sales.getDayAfter()}');
 
     return Form(
       child: Column(
@@ -53,9 +57,10 @@ class SalesForm extends StatelessWidget {
           ElevatedButton(
             child: const Text('計算'),
               onPressed: (){
-                vm.setTodaySales(int.parse(today.text)*10000);
-                vm.setTomorrowSales(int.parse(tomorrow.text)*10000);
-                vm.setDayAfterSales(int.parse(dayAfter.text)*10000);
+                int todaySales = int.parse(today.text);
+                int tomorrowSales = int.parse(tomorrow.text);
+                int dayAfterSales = int.parse(dayAfter.text);
+                vm.setSales(todaySales, tomorrowSales, dayAfterSales);
                 vm.init();
                 FocusManager.instance.primaryFocus!.unfocus();
               },

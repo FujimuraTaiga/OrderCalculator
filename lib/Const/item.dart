@@ -12,12 +12,5 @@ extension MeatExtension on Item{
     Item.chicken  : '鳥',
   };
 
-  static final itemPackPerSales = {
-    Item.beef     : 60000,
-    Item.pork     : 70000,
-    Item.chicken  : 60000,
-  };
-
   String get name => itemName[this]!;
-  int get packPerSales => itemPackPerSales[this]!;
 }

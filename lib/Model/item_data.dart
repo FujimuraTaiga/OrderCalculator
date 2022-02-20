@@ -1,14 +1,11 @@
-import 'package:order_support/Const/item.dart';
 import 'package:order_support/Model/sales.dart';
 
 class ItemData{
 
-  Item item;
   int today = 0;
   int tomorrow = 0;
   int order = 0;
-
-  ItemData(this.item);
+  int price = 60000;
 
   void setToday(int today){
     this.today = today;
@@ -18,7 +15,15 @@ class ItemData{
     this.tomorrow = tomorrow;
   }
 
+  void setPrice(double price){
+    this.price = (price * 10000).ceil();
+  }
+
+  double getPrice(){
+    return price/10000;
+  }
+
   void setOrder(Sales sales){
-    order = (sales.sumSales()/item.packPerSales).ceil() - today - tomorrow;
+    order = (sales.sumSales()/price).ceil() - today - tomorrow;
   }
 }

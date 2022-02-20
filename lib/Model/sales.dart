@@ -4,16 +4,22 @@ class Sales{
   int tomorrow = 0;
   int dayAfter = 0;
 
-  void setToday(int today){
-    this.today = today;
+  void set(int today, int tomorrow, int dayAfter){
+    this.today = today * 10000;
+    this.tomorrow = tomorrow * 10000;
+    this.dayAfter = dayAfter * 10000;
   }
 
-  void setTomorrow(int tomorrow){
-    this.tomorrow = tomorrow;
+  int getToday(){
+    return (today/10000).ceil();
   }
 
-  void setDayAfter(int dayAfter){
-    this.dayAfter = dayAfter;
+  int getTomorrow(){
+    return (tomorrow/10000).ceil();
+  }
+
+  int getDayAfter(){
+    return (dayAfter/10000).ceil();
   }
 
   int sumSales(){

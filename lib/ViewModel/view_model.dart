@@ -6,9 +6,9 @@ import 'package:order_support/Model/sales.dart';
 class ViewModel with ChangeNotifier{
 
   final itemData = {
-    Item.beef     : ItemData(Item.beef),
-    Item.pork     : ItemData(Item.pork),
-    Item.chicken  : ItemData(Item.chicken),
+    Item.beef     : ItemData(),
+    Item.pork     : ItemData(),
+    Item.chicken  : ItemData(),
   };
   final sales = Sales();
 
@@ -31,15 +31,14 @@ class ViewModel with ChangeNotifier{
     notifyListeners();
   }
 
-  void setTodaySales(int today){
-    sales.setToday(today);
+  void setSales(int today, int tomorrow, int dayAfter){
+    sales.set(today,tomorrow,dayAfter);
   }
 
-  void setTomorrowSales(int tomorrow){
-    sales.setTomorrow(tomorrow);
-  }
-
-  void setDayAfterSales(int dayAfter){
-    sales.setDayAfter(dayAfter);
+  void setPrice(double beef,double pork,double chicken){
+    itemData[Item.beef]!.setPrice(beef);
+    itemData[Item.pork]!.setPrice(pork);
+    itemData[Item.chicken]!.setPrice(chicken);
+    notifyListeners();
   }
 }
