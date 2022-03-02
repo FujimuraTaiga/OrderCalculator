@@ -1,38 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:order_support/Model/Meat/meat.dart';
 
 import 'package:order_support/Const/size.dart';
 import 'package:order_support/Const/date.dart';
-import 'package:order_support/Const/item.dart';
-
-import 'package:order_support/ViewModel/view_model.dart';
 
 import 'package:order_support/View/AmountForm/select_button.dart';
 
 class AmountItem extends StatelessWidget {
-  final Item item;
+  final Meat meat;
 
-  const AmountItem(this.item, {Key? key}) : super(key: key);
+  const AmountItem(this.meat, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    ViewModel vm = Provider.of<ViewModel>(context);
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SizedBox(
           width: WidgetSize.amountForm.width,
-          child: Center(child: Text(item.name)),
+          child: Center(child: Text(meat.name)),
         ),
-        SelectButton(Date.today, item),
-        SelectButton(Date.tomorrow, item),
+        SelectButton(Date.today, meat),
+        SelectButton(Date.tomorrow, meat),
         SizedBox(
           width: WidgetSize.amountForm.width,
           child: Center(
             child: Text(
-              '${vm.itemData[item]!.order}P',
+              '${meat.need}P',
               style: TextStyle(
                 fontSize: WidgetSize.amountForm.fontSize,
               ),
