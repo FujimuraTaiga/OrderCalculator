@@ -4,8 +4,6 @@ import 'package:order_support/Model/Meat/chicken.dart';
 import 'package:order_support/Model/Meat/pork.dart';
 
 import 'package:order_support/View/AmountForm/amount_item.dart';
-import 'package:order_support/View/PriceForm/Sales/sales_form.dart';
-import 'package:order_support/ViewModel/view_model.dart';
 import 'package:provider/provider.dart';
 
 import 'amount_header.dart';
@@ -27,9 +25,7 @@ class AmountForm extends StatelessWidget {
           AmountItem(pork),
           AmountItem(beef),
           AmountItem(chicken),
-          const SizedBox(
-            height: 20.0,
-          ),
+          const SizedBox(height: 20.0),
         ],
       ),
     );
