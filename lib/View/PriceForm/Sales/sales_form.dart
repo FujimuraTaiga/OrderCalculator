@@ -15,11 +15,12 @@ class SalesForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sales sales = Provider.of<Sales>(context);
+    Sales salesProvider = Provider.of<Sales>(context);
+    SalesService sales = SalesService(salesProvider);
 
-    today.text = '${sales.getToday()}';
-    tomorrow.text = '${sales.getTomorrow()}';
-    dayAfter.text = '${sales.getDayAfter()}';
+    today.text = sales.getPrice(Date.today);
+    tomorrow.text = sales.getPrice(Date.tomorrow);
+    dayAfter.text = sales.getPrice(Date.dayAfter);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

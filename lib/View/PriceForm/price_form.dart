@@ -53,15 +53,16 @@ class PriceForm extends StatelessWidget {
             int tomorrowSales = int.parse(tomorrow.text);
             int dayAfterSales = int.parse(dayAfter.text);
             sales.set(todaySales, tomorrowSales, dayAfterSales);
+
+            final sumSales = SalesService(sales).sumAll();
+
             double porkPrice = double.parse(porkController.text);
             double beefPrice = double.parse(beefController.text);
             double chickenPrice = double.parse(chickenController.text);
-            pork.setPrice(porkPrice, sales.sumSales());
-            beef.setPrice(beefPrice, sales.sumSales());
-            chicken.setPrice(chickenPrice, sales.sumSales());
-            pork.setNeed(sales.sumSales());
-            beef.setNeed(sales.sumSales());
-            chicken.setNeed(sales.sumSales());
+            pork.setPrice(porkPrice, sumSales);
+            beef.setPrice(beefPrice, sumSales);
+            chicken.setPrice(chickenPrice, sumSales);
+
             FocusManager.instance.primaryFocus!.unfocus();
           },
         ),

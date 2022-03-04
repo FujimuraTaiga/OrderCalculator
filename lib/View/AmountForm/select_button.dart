@@ -20,7 +20,8 @@ class SelectButton extends StatelessWidget {
     final pork = Provider.of<Pork>(context);
     final beef = Provider.of<Beef>(context);
     final chicken = Provider.of<Chicken>(context);
-    final sales = Provider.of<Sales>(context).sumSales();
+    final sales = Provider.of<Sales>(context);
+    final sumSales = SalesService(sales).sumAll();
 
     return SizedBox(
       width: WidgetSize.amountForm.width,
@@ -30,11 +31,11 @@ class SelectButton extends StatelessWidget {
               value: meat.today,
               onChanged: (int? newValue) {
                 if (meat.name == '豚') {
-                  pork.setToday(newValue!, sales);
+                  pork.setToday(newValue!, sumSales);
                 } else if (meat.name == '牛') {
-                  beef.setToday(newValue!, sales);
+                  beef.setToday(newValue!, sumSales);
                 } else if (meat.name == '鳥') {
-                  chicken.setToday(newValue!, sales);
+                  chicken.setToday(newValue!, sumSales);
                 }
               },
             )
@@ -43,11 +44,11 @@ class SelectButton extends StatelessWidget {
               value: meat.tomorrow,
               onChanged: (int? newValue) {
                 if (meat.name == '豚') {
-                  pork.setTomorrow(newValue!, sales);
+                  pork.setTomorrow(newValue!, sumSales);
                 } else if (meat.name == '牛') {
-                  beef.setTomorrow(newValue!, sales);
+                  beef.setTomorrow(newValue!, sumSales);
                 } else if (meat.name == '鳥') {
-                  chicken.setTomorrow(newValue!, sales);
+                  chicken.setTomorrow(newValue!, sumSales);
                 }
               },
             ),

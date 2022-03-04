@@ -42,6 +42,7 @@ class Pork with ChangeNotifier implements Meat {
   @override
   void setNeed(int sumSales) {
     need = (sumSales / price).ceil() - today - tomorrow;
+    notifyListeners();
   }
 
   @override
