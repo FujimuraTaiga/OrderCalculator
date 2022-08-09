@@ -16,5 +16,7 @@ flutter_riverpodを使ったMVVM
  - SalesProvider
 
 # デモ
-https://user-images.githubusercontent.com/61898635/183635087-1a246da1-ad41-4b0c-a82e-d154e5732a90.mov
+
+
+https://user-images.githubusercontent.com/61898635/183636180-41d9f493-4201-4f44-a2dc-195857222e97.mov
 
