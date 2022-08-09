@@ -1,4 +1,9 @@
-# OderCalculator
+# デモ
+
+
+https://user-images.githubusercontent.com/61898635/183636180-41d9f493-4201-4f44-a2dc-195857222e97.mov
+
+# 説明
 バイト先の飲食店の発注管理をするアプリ。  
 売上の予想額や在庫数などを入力すると必要な発注数が表示される。
 
@@ -14,9 +19,3 @@ flutter_riverpodを使ったMVVM
 ## ViewModel
  - ItemProvider
  - SalesProvider
-
-# デモ
-
-
-https://user-images.githubusercontent.com/61898635/183636180-41d9f493-4201-4f44-a2dc-195857222e97.mov
-
