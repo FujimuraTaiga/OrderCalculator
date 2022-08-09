@@ -11,7 +11,7 @@ flutter_riverpodを使ったMVVM
  - Money 金額など
  - Stock 在庫数、納品予定数など
 
-##　ViewModel
+## ViewModel
  - ItemProvider
  - SalesProvider
 
