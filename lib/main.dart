@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:order_support/View/MainPage/main_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:order_support/UI/MainPage/main_page.dart';
 
 void main() {
-  runApp(const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-        length: 4,
-        child: MainPage(),
-      )));
+  runApp(
+    ProviderScope(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const MainPage(),
+        theme: ThemeData(
+          cardTheme: const CardTheme(
+            elevation: 10,
+            shadowColor: Colors.lightBlueAccent,
+          ),
+        ),
+      ),
+    ),
+  );
 }
