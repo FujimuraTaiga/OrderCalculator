@@ -39,13 +39,6 @@ class ItemCard extends ConsumerWidget {
                 children: [
                   AmountRow.today(itemProvider),
                   AmountRow.tomorrow(itemProvider),
-                  Text(
-                    "必要数: ${item.amountOfNeed(sumOfSales)}P",
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                 ],
               ),
             ),

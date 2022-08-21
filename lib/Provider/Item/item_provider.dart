@@ -8,8 +8,8 @@ final porkProvider = StateNotifierProvider<ItemState, Item>(
   (ref) => ItemState(
     const Item(
       name: "pork",
-      stock: Stock(today: 0, tomorrow: 0),
-      amountPerSales: 60000,
+      stock: Stock(today: 0, tomorrow: 0, dayAfter: 0),
+      amountPerSales: 80000,
     ),
   ),
 );
@@ -18,8 +18,8 @@ final beefProvider = StateNotifierProvider<ItemState, Item>(
   (ref) => ItemState(
     const Item(
       name: "beef",
-      stock: Stock(today: 0, tomorrow: 0),
-      amountPerSales: 52000,
+      stock: Stock(today: 0, tomorrow: 0, dayAfter: 0),
+      amountPerSales: 55000,
     ),
   ),
 );
@@ -28,8 +28,8 @@ final chickenProvider = StateNotifierProvider<ItemState, Item>(
   (ref) => ItemState(
     const Item(
       name: "chicken",
-      stock: Stock(today: 0, tomorrow: 0),
-      amountPerSales: 60000,
+      stock: Stock(today: 0, tomorrow: 0, dayAfter: 0),
+      amountPerSales: 65000,
     ),
   ),
 );

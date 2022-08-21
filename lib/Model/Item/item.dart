@@ -15,8 +15,47 @@ class Item with _$Item {
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
 
+  int get amountOfOrder => stock.dayAfter;
+  int get stockValue => stock.sumAll * amountPerSales;
+
   Item setStock(Stock newStock) {
     return Item(name: name, stock: newStock, amountPerSales: amountPerSales);
+  }
+
+  Item setToday(int today) {
+    return Item(
+      name: name,
+      stock: Stock(
+        today: today,
+        tomorrow: stock.tomorrow,
+        dayAfter: stock.dayAfter,
+      ),
+      amountPerSales: amountPerSales,
+    );
+  }
+
+  Item setTomorrow(int tomorrow) {
+    return Item(
+      name: name,
+      stock: Stock(
+        today: stock.today,
+        tomorrow: tomorrow,
+        dayAfter: stock.dayAfter,
+      ),
+      amountPerSales: amountPerSales,
+    );
+  }
+
+  Item setDayAfter(int dayAfter) {
+    return Item(
+      name: name,
+      stock: Stock(
+        today: stock.today,
+        tomorrow: stock.tomorrow,
+        dayAfter: dayAfter,
+      ),
+      amountPerSales: amountPerSales,
+    );
   }
 
   int amountOfNeed(int sumOfSales) {
@@ -24,4 +63,6 @@ class Item with _$Item {
 
     return (sumOfSales / amountPerSales).ceil() - totalStock;
   }
+
+  int get threeDaysOfAmount => stock.today + stock.tomorrow + stock.dayAfter;
 }

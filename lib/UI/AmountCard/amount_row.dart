@@ -27,16 +27,16 @@ class AmountRow extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                date == Date.today ? "在庫数:" : "納品予定:",
+                date == Date.today ? "在庫数:" : "明日納品数:",
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 17,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 date == Date.today ? "${stock.today}P" : "${stock.tomorrow}P",
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 17,
                   fontWeight: FontWeight.bold,
                 ),
               ),
