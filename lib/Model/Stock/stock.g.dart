@@ -9,9 +9,11 @@ part of 'stock.dart';
 _$_Stock _$$_StockFromJson(Map<String, dynamic> json) => _$_Stock(
       today: json['today'] as int,
       tomorrow: json['tomorrow'] as int,
+      dayAfter: json['dayAfter'] as int,
     );
 
 Map<String, dynamic> _$$_StockToJson(_$_Stock instance) => <String, dynamic>{
       'today': instance.today,
       'tomorrow': instance.tomorrow,
+      'dayAfter': instance.dayAfter,
     };

@@ -1,25 +1,25 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:order_support/Model/DailySales/daily_sales.dart';
+import 'package:order_support/Model/Sales/sales.dart';
 import 'package:order_support/Provider/Sales/sales_state.dart';
 
-final todaySalesProvider = StateNotifierProvider<SalesState, DailySales>(
+final todaySalesProvider = StateNotifierProvider<SalesState, Sales>(
   (ref) => SalesState(
-    DailySales(date: DateTime.now(), price: 0),
+    Sales(date: DateTime.now(), price: 0),
   ),
 );
 
-final tomorrowSalesProvider = StateNotifierProvider<SalesState, DailySales>(
+final tomorrowSalesProvider = StateNotifierProvider<SalesState, Sales>(
   (ref) => SalesState(
-    DailySales(
+    Sales(
       date: DateTime.now().add(const Duration(days: 1)),
       price: 0,
     ),
   ),
 );
 
-final dayAfterSalesProvider = StateNotifierProvider<SalesState, DailySales>(
+final dayAfterSalesProvider = StateNotifierProvider<SalesState, Sales>(
   (ref) => SalesState(
-    DailySales(
+    Sales(
       date: DateTime.now().add(const Duration(days: 2)),
       price: 0,
     ),

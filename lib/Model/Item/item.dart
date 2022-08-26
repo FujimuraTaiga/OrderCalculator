@@ -8,6 +8,7 @@ part 'item.g.dart';
 class Item with _$Item {
   const Item._();
   const factory Item({
+    required String image,
     required String name,
     required Stock stock,
     required int amountPerSales,
@@ -15,9 +16,7 @@ class Item with _$Item {
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
 
-  Item setStock(Stock newStock) {
-    return Item(name: name, stock: newStock, amountPerSales: amountPerSales);
-  }
+  int get stockValue => stock.totalAmount * amountPerSales;
 
   int amountOfNeed(int sumOfSales) {
     int totalStock = stock.today + stock.tomorrow;

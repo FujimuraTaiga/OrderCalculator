@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'daily_sales.dart';
+part of 'sales.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,36 +14,34 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-DailySales _$DailySalesFromJson(Map<String, dynamic> json) {
-  return _DailySales.fromJson(json);
+Sales _$SalesFromJson(Map<String, dynamic> json) {
+  return _Sales.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DailySales {
+mixin _$Sales {
   DateTime get date => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DailySalesCopyWith<DailySales> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SalesCopyWith<Sales> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DailySalesCopyWith<$Res> {
-  factory $DailySalesCopyWith(
-          DailySales value, $Res Function(DailySales) then) =
-      _$DailySalesCopyWithImpl<$Res>;
+abstract class $SalesCopyWith<$Res> {
+  factory $SalesCopyWith(Sales value, $Res Function(Sales) then) =
+      _$SalesCopyWithImpl<$Res>;
   $Res call({DateTime date, int price});
 }
 
 /// @nodoc
-class _$DailySalesCopyWithImpl<$Res> implements $DailySalesCopyWith<$Res> {
-  _$DailySalesCopyWithImpl(this._value, this._then);
+class _$SalesCopyWithImpl<$Res> implements $SalesCopyWith<$Res> {
+  _$SalesCopyWithImpl(this._value, this._then);
 
-  final DailySales _value;
+  final Sales _value;
   // ignore: unused_field
-  final $Res Function(DailySales) _then;
+  final $Res Function(Sales) _then;
 
   @override
   $Res call({
@@ -64,31 +62,28 @@ class _$DailySalesCopyWithImpl<$Res> implements $DailySalesCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_DailySalesCopyWith<$Res>
-    implements $DailySalesCopyWith<$Res> {
-  factory _$$_DailySalesCopyWith(
-          _$_DailySales value, $Res Function(_$_DailySales) then) =
-      __$$_DailySalesCopyWithImpl<$Res>;
+abstract class _$$_SalesCopyWith<$Res> implements $SalesCopyWith<$Res> {
+  factory _$$_SalesCopyWith(_$_Sales value, $Res Function(_$_Sales) then) =
+      __$$_SalesCopyWithImpl<$Res>;
   @override
   $Res call({DateTime date, int price});
 }
 
 /// @nodoc
-class __$$_DailySalesCopyWithImpl<$Res> extends _$DailySalesCopyWithImpl<$Res>
-    implements _$$_DailySalesCopyWith<$Res> {
-  __$$_DailySalesCopyWithImpl(
-      _$_DailySales _value, $Res Function(_$_DailySales) _then)
-      : super(_value, (v) => _then(v as _$_DailySales));
+class __$$_SalesCopyWithImpl<$Res> extends _$SalesCopyWithImpl<$Res>
+    implements _$$_SalesCopyWith<$Res> {
+  __$$_SalesCopyWithImpl(_$_Sales _value, $Res Function(_$_Sales) _then)
+      : super(_value, (v) => _then(v as _$_Sales));
 
   @override
-  _$_DailySales get _value => super._value as _$_DailySales;
+  _$_Sales get _value => super._value as _$_Sales;
 
   @override
   $Res call({
     Object? date = freezed,
     Object? price = freezed,
   }) {
-    return _then(_$_DailySales(
+    return _then(_$_Sales(
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -103,11 +98,11 @@ class __$$_DailySalesCopyWithImpl<$Res> extends _$DailySalesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DailySales extends _DailySales {
-  const _$_DailySales({required this.date, required this.price}) : super._();
+class _$_Sales extends _Sales {
+  const _$_Sales({required this.date, required this.price}) : super._();
 
-  factory _$_DailySales.fromJson(Map<String, dynamic> json) =>
-      _$$_DailySalesFromJson(json);
+  factory _$_Sales.fromJson(Map<String, dynamic> json) =>
+      _$$_SalesFromJson(json);
 
   @override
   final DateTime date;
@@ -116,14 +111,14 @@ class _$_DailySales extends _DailySales {
 
   @override
   String toString() {
-    return 'DailySales(date: $date, price: $price)';
+    return 'Sales(date: $date, price: $price)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DailySales &&
+            other is _$_Sales &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.price, price));
   }
@@ -137,24 +132,23 @@ class _$_DailySales extends _DailySales {
 
   @JsonKey(ignore: true)
   @override
-  _$$_DailySalesCopyWith<_$_DailySales> get copyWith =>
-      __$$_DailySalesCopyWithImpl<_$_DailySales>(this, _$identity);
+  _$$_SalesCopyWith<_$_Sales> get copyWith =>
+      __$$_SalesCopyWithImpl<_$_Sales>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DailySalesToJson(
+    return _$$_SalesToJson(
       this,
     );
   }
 }
 
-abstract class _DailySales extends DailySales {
-  const factory _DailySales(
-      {required final DateTime date, required final int price}) = _$_DailySales;
-  const _DailySales._() : super._();
+abstract class _Sales extends Sales {
+  const factory _Sales(
+      {required final DateTime date, required final int price}) = _$_Sales;
+  const _Sales._() : super._();
 
-  factory _DailySales.fromJson(Map<String, dynamic> json) =
-      _$_DailySales.fromJson;
+  factory _Sales.fromJson(Map<String, dynamic> json) = _$_Sales.fromJson;
 
   @override
   DateTime get date;
@@ -162,6 +156,6 @@ abstract class _DailySales extends DailySales {
   int get price;
   @override
   @JsonKey(ignore: true)
-  _$$_DailySalesCopyWith<_$_DailySales> get copyWith =>
+  _$$_SalesCopyWith<_$_Sales> get copyWith =>
       throw _privateConstructorUsedError;
 }
