@@ -30,7 +30,8 @@ class AmountSlider extends ConsumerWidget {
       max: 15,
       onChanged: (value) {
         item.changeStockOf(date, value);
-        item.changeOrder(ref.read(itemState).amountOfNeed(sumOfSales));
+        final need = ref.read(itemState).amountOfNeed(sumOfSales);
+        item.changeStockOf(Date.dayAfter, need.toDouble());
       },
     );
   }

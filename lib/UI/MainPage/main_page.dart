@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:order_support/Provider/Item/item_provider.dart';
 import 'package:order_support/UI/AmountCard/item_card.dart';
-import 'package:order_support/UI/OrderCard/order_card.dart';
+import 'package:order_support/UI/OrderPage/order_page.dart';
 import 'package:order_support/UI/SalesCard/sales_card.dart';
 
 class MainPage extends StatelessWidget {

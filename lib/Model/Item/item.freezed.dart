@@ -20,6 +20,7 @@ Item _$ItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Item {
+  String get image => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   Stock get stock => throw _privateConstructorUsedError;
   int get amountPerSales => throw _privateConstructorUsedError;
@@ -33,7 +34,7 @@ mixin _$Item {
 abstract class $ItemCopyWith<$Res> {
   factory $ItemCopyWith(Item value, $Res Function(Item) then) =
       _$ItemCopyWithImpl<$Res>;
-  $Res call({String name, Stock stock, int amountPerSales});
+  $Res call({String image, String name, Stock stock, int amountPerSales});
 
   $StockCopyWith<$Res> get stock;
 }
@@ -48,11 +49,16 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? image = freezed,
     Object? name = freezed,
     Object? stock = freezed,
     Object? amountPerSales = freezed,
   }) {
     return _then(_value.copyWith(
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -81,7 +87,7 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
   factory _$$_ItemCopyWith(_$_Item value, $Res Function(_$_Item) then) =
       __$$_ItemCopyWithImpl<$Res>;
   @override
-  $Res call({String name, Stock stock, int amountPerSales});
+  $Res call({String image, String name, Stock stock, int amountPerSales});
 
   @override
   $StockCopyWith<$Res> get stock;
@@ -98,11 +104,16 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? image = freezed,
     Object? name = freezed,
     Object? stock = freezed,
     Object? amountPerSales = freezed,
   }) {
     return _then(_$_Item(
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -123,11 +134,16 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Item extends _Item {
   const _$_Item(
-      {required this.name, required this.stock, required this.amountPerSales})
+      {required this.image,
+      required this.name,
+      required this.stock,
+      required this.amountPerSales})
       : super._();
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
 
+  @override
+  final String image;
   @override
   final String name;
   @override
@@ -137,7 +153,7 @@ class _$_Item extends _Item {
 
   @override
   String toString() {
-    return 'Item(name: $name, stock: $stock, amountPerSales: $amountPerSales)';
+    return 'Item(image: $image, name: $name, stock: $stock, amountPerSales: $amountPerSales)';
   }
 
   @override
@@ -145,6 +161,7 @@ class _$_Item extends _Item {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Item &&
+            const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.stock, stock) &&
             const DeepCollectionEquality()
@@ -155,6 +172,7 @@ class _$_Item extends _Item {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(image),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(stock),
       const DeepCollectionEquality().hash(amountPerSales));
@@ -174,13 +192,16 @@ class _$_Item extends _Item {
 
 abstract class _Item extends Item {
   const factory _Item(
-      {required final String name,
+      {required final String image,
+      required final String name,
       required final Stock stock,
       required final int amountPerSales}) = _$_Item;
   const _Item._() : super._();
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
 
+  @override
+  String get image;
   @override
   String get name;
   @override

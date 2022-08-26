@@ -3,9 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:order_support/Provider/Sales/sales_provider.dart';
 import 'package:order_support/UI/SalesCard/sales_slider.dart';
 import 'package:order_support/Enum/date.dart';
-
-import '../../Model/DailySales/daily_sales.dart';
-import '../../Provider/Sales/sales_state.dart';
+import 'package:order_support/Model/Sales/sales.dart';
+import 'package:order_support/Provider/Sales/sales_state.dart';
 
 class SalesFormRow extends ConsumerWidget {
   SalesFormRow.today({Key? key}) : super(key: key) {
@@ -22,11 +21,11 @@ class SalesFormRow extends ConsumerWidget {
   }
 
   late final Date date;
-  late final StateNotifierProvider<SalesState, DailySales> dailySalesProvider;
+  late final StateNotifierProvider<SalesState, Sales> dailySalesProvider;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final price = ref.watch(dailySalesProvider).getPrice;
+    final price = ref.watch(dailySalesProvider).price;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

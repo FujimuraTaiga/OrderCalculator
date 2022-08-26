@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:order_support/Model/DailySales/daily_sales.dart';
+import 'package:order_support/Model/Sales/sales.dart';
 
-class SalesState extends StateNotifier<DailySales> {
+class SalesState extends StateNotifier<Sales> {
   SalesState(this.sales) : super(sales);
 
-  final DailySales sales;
+  final Sales sales;
 
   void changePrice(int price) {
     state = state.copyWith(

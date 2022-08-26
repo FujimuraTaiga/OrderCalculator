@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:order_support/Model/Item/item.dart';
 import 'package:order_support/Provider/Item/item_state.dart';
-import 'package:order_support/Provider/Sales/sales_provider.dart';
 import 'package:order_support/UI/AmountCard/amount_row.dart';
 import 'package:order_support/UI/AmountCard/item_image.dart';
 
@@ -13,10 +12,6 @@ class ItemCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final item = ref.watch(itemProvider);
-    final todaySales = ref.watch(todaySalesProvider).getPrice;
-    final tomorrowSales = ref.watch(tomorrowSalesProvider).getPrice;
-    final dayAfterSales = ref.watch(dayAfterSalesProvider).getPrice;
-    int sumOfSales = todaySales + tomorrowSales + dayAfterSales;
 
     return Card(
       elevation: 10,
@@ -27,7 +22,7 @@ class ItemCard extends ConsumerWidget {
           children: [
             Flexible(
               flex: 6,
-              child: ItemImage(item.name),
+              child: ItemImage(item.image),
             ),
             const Flexible(
               flex: 2,

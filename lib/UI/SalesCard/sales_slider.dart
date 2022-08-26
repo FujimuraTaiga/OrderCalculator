@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:order_support/Model/DailySales/daily_sales.dart';
+import 'package:order_support/Model/Sales/sales.dart';
 import 'package:order_support/Enum/date.dart';
 import 'package:order_support/Provider/Sales/sales_state.dart';
 
@@ -9,11 +9,11 @@ class SalesSlider extends ConsumerWidget {
       : super(key: key);
 
   final Date date;
-  final StateNotifierProvider<SalesState, DailySales> dailySalesProvider;
+  final StateNotifierProvider<SalesState, Sales> dailySalesProvider;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final int price = ref.watch(dailySalesProvider).getPrice;
+    final int price = ref.watch(dailySalesProvider).price;
 
     return Slider(
       value: (price / 10000).toDouble(),

@@ -8,10 +8,6 @@ class ItemState extends StateNotifier<Item> {
   ItemState(this.item) : super(item);
   final Item item;
 
-  String get name => state.name;
-  int get amountPerSales => state.amountPerSales;
-  int get stockValue => state.stock.sumAll;
-
   int getStockOf(Date date) {
     switch (date) {
       case Date.today:
@@ -59,14 +55,10 @@ class ItemState extends StateNotifier<Item> {
     }
   }
 
-  void changeOrder(int amount) {
+  void incrementOrder() {
     state = state.copyWith(
       name: state.name,
-      stock: Stock(
-        today: state.stock.today,
-        tomorrow: state.stock.tomorrow,
-        dayAfter: amount,
-      ),
+      stock: state.stock.incrementOrder(),
       amountPerSales: state.amountPerSales,
     );
   }

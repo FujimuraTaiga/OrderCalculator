@@ -13,7 +13,7 @@ class Stock with _$Stock {
   }) = _Stock;
   factory Stock.fromJson(Map<String, dynamic> json) => _$StockFromJson(json);
 
-  int get sumAll => today + tomorrow + dayAfter;
+  int get totalAmount => today + tomorrow + dayAfter;
 
   Stock setToday(int newAmount) {
     return Stock(today: newAmount, tomorrow: tomorrow, dayAfter: dayAfter);
@@ -25,5 +25,9 @@ class Stock with _$Stock {
 
   Stock setDayAfter(int newAmount) {
     return Stock(today: today, tomorrow: tomorrow, dayAfter: newAmount);
+  }
+
+  Stock incrementOrder() {
+    return Stock(today: today, tomorrow: tomorrow, dayAfter: dayAfter + 1);
   }
 }

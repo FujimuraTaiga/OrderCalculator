@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:order_support/Provider/Order/oder_provider.dart';
+import 'package:order_support/Model/Item/item.dart';
+import 'package:order_support/Provider/Store/store_provider.dart';
 
 class OrderPage extends ConsumerWidget {
   const OrderPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final order = ref.watch(orderProvider.notifier);
+    final store = ref.watch(storeProvider);
+    final storeState = ref.watch(storeProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(),
@@ -17,13 +19,10 @@ class OrderPage extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("豚: ${order.pork.amountOfOrder}P"),
-              Text("牛: ${order.beef.amountOfOrder}P"),
-              Text("鶏: ${order.chicken.amountOfOrder}P"),
+              ...itemList(store.items),
               ElevatedButton(
                 onPressed: () {
-                  int need = 12 - (order.totalAmount % 12);
-                  print(need);
+                  storeState.adjustOrder();
                 },
                 child: const Text("更新"),
               )
@@ -32,5 +31,15 @@ class OrderPage extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> itemList(List<Item> items) {
+    final List<Widget> itemList = [];
+    for (final item in items) {
+      itemList.add(
+        Text("${item.name}: ${item.stock.dayAfter}P"),
+      );
+    }
+    return itemList;
   }
 }
