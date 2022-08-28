@@ -22,12 +22,12 @@ class AmountRow extends ConsumerWidget {
     return Row(
       children: [
         Flexible(
-          flex: 9,
+          flex: 6,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                date == Date.today ? "在庫数:" : "明日納品数:",
+                date == Date.today ? "在庫数:" : "納品予定:",
                 style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
