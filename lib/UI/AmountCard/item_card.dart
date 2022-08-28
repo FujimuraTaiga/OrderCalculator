@@ -16,26 +16,27 @@ class ItemCard extends ConsumerWidget {
     return Card(
       elevation: 10,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        padding: const EdgeInsets.all(4.0),
+        child: Column(
           children: [
-            Flexible(
-              flex: 6,
-              child: ItemImage(item.image),
-            ),
-            const Flexible(
-              flex: 2,
-              child: SizedBox(),
-            ),
-            Flexible(
-              flex: 30,
-              child: Column(
-                children: [
-                  AmountRow.today(itemProvider),
-                  AmountRow.tomorrow(itemProvider),
-                ],
-              ),
+            ItemImage(item.image),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Flexible(
+                  flex: 1,
+                  child: SizedBox(),
+                ),
+                Flexible(
+                  flex: 30,
+                  child: Column(
+                    children: [
+                      AmountRow.today(itemProvider),
+                      AmountRow.tomorrow(itemProvider),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ],
         ),

@@ -13,7 +13,7 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: ListView(
           children: [
             const SalesCard(),
             ItemCard(porkProvider),

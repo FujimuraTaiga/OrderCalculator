@@ -8,12 +8,15 @@ class ItemImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 70,
-      height: 70,
+      width: 60,
+      height: 60,
       child: Container(
         decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/$url.png"), fit: BoxFit.cover)),
+          image: DecorationImage(
+            image: AssetImage("assets/$url.png"),
+            fit: BoxFit.contain,
+          ),
+        ),
       ),
     );
   }
