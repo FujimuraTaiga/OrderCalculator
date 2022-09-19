@@ -1,38 +1,26 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:order_support/Provider/Sales/sales_provider.dart';
-import 'package:order_support/UI/SalesCard/sales_slider.dart';
-import 'package:order_support/Enum/date.dart';
-import 'package:order_support/Model/Sales/sales.dart';
-import 'package:order_support/Provider/Sales/sales_state.dart';
+import 'package:flutter/material.dart';
 
-class SalesFormRow extends ConsumerWidget {
-  SalesFormRow.today({Key? key}) : super(key: key) {
-    date = Date.today;
-    dailySalesProvider = todaySalesProvider;
-  }
-  SalesFormRow.tomorrow({Key? key}) : super(key: key) {
-    date = Date.tomorrow;
-    dailySalesProvider = tomorrowSalesProvider;
-  }
-  SalesFormRow.dayAfter({Key? key}) : super(key: key) {
-    date = Date.dayAfter;
-    dailySalesProvider = dayAfterSalesProvider;
-  }
+class SalesFormRow extends StatelessWidget {
+  const SalesFormRow({
+    required this.day,
+    required this.price,
+    required this.onChanged,
+    Key? key,
+  }) : super(key: key);
 
-  late final Date date;
-  late final StateNotifierProvider<SalesState, Sales> dailySalesProvider;
+  final int day;
+  final int price;
+  final void Function(double) onChanged;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final price = ref.watch(dailySalesProvider).price;
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Flexible(
           flex: 2,
           child: Text(
-            "${date.day}日",
+            "$day日",
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
@@ -48,7 +36,12 @@ class SalesFormRow extends ConsumerWidget {
         ),
         Flexible(
           flex: 7,
-          child: SalesSlider(date, dailySalesProvider),
+          child: Slider(
+            value: (price / 10000).toDouble(),
+            min: 0,
+            max: 70,
+            onChanged: onChanged,
+          ),
         ),
       ],
     );
