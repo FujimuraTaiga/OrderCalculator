@@ -50,4 +50,18 @@ class Item with _$Item {
       stocks: stocks,
     );
   }
+
+  Item addDayAfterStock() {
+    return Item(
+      id: id,
+      name: name,
+      sortOrder: sortOrder,
+      image: image,
+      amountPerSales: amountPerSales,
+      todayStock: todayStock,
+      tomorrowStock: tomorrowStock,
+      dayAfterStock: dayAfterStock + 1,
+      stocks: stocks,
+    );
+  }
 }

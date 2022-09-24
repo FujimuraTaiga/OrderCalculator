@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:order_support/Provider/Sales/sales_provider.dart';
-import 'package:order_support/UI/SalesCard/sales_card_row.dart';
+import 'package:order_support/UI/MainPage/SalesCard/sales_card_row.dart';
 
 class SalesCard extends ConsumerWidget {
   const SalesCard({Key? key}) : super(key: key);

@@ -55,3 +55,9 @@ final itemProviderFamily =
     StateNotifierProvider.family<ItemProvider, ItemState, String>((ref, id) {
   return ItemProvider(id);
 });
+
+final itemProviders = ItemService().readItems().asStream().map((itemList) {
+  itemList.map((item) {
+    return itemProviderFamily(item.id);
+  }).toList();
+}).toList();

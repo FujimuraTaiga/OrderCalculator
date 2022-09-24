@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:order_support/Provider/Item/item_provider.dart';
 import 'package:order_support/Service/item_service.dart';
-import 'package:order_support/UI/AmountCard/item_card.dart';
+import 'package:order_support/UI/MainPage/AmountCard/item_card.dart';
 import 'package:order_support/UI/OrderPage/order_page.dart';
-import 'package:order_support/UI/SalesCard/sales_card.dart';
+import 'package:order_support/UI/MainPage/SalesCard/sales_card.dart';
 import 'package:order_support/Model/Item/item.dart';
 
 class MainPage extends ConsumerWidget {
@@ -12,12 +12,6 @@ class MainPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ItemService().readItems().then((items) {
-      for (final item in items) {
-        itemProviderFamily(item.id);
-      }
-    });
-
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
