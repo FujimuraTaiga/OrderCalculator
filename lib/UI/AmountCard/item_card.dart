@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:order_support/Model/Item/item.dart';
-import 'package:order_support/Provider/Item/item_state.dart';
 import 'package:order_support/UI/AmountCard/amount_row.dart';
 import 'package:order_support/UI/AmountCard/item_image.dart';
+import 'package:order_support/Enum/date.dart';
 
 class ItemCard extends ConsumerWidget {
-  const ItemCard(this.itemProvider, {Key? key}) : super(key: key);
-  final StateNotifierProvider<ItemState, Item> itemProvider;
+  const ItemCard(this.item, {Key? key}) : super(key: key);
+  final Item item;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final item = ref.watch(itemProvider);
-
     return Card(
       elevation: 10,
       child: Padding(
@@ -31,8 +30,8 @@ class ItemCard extends ConsumerWidget {
                   flex: 30,
                   child: Column(
                     children: [
-                      AmountRow.today(itemProvider),
-                      AmountRow.tomorrow(itemProvider),
+                      AmountRow(itemId: item.id, date: Date.today),
+                      AmountRow(itemId: item.id, date: Date.tomorrow),
                     ],
                   ),
                 ),

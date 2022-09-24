@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:order_support/Model/Item/item.dart';
-import 'package:order_support/Provider/Item/item_state.dart';
+import 'package:order_support/Provider/Item/item_provider.dart';
 import 'package:order_support/Enum/date.dart';
-import 'amount_slider.dart';
 
 class AmountRow extends ConsumerWidget {
-  AmountRow.today(this.itemProvider, {Key? key}) : super(key: key) {
-    date = Date.today;
-  }
-  AmountRow.tomorrow(this.itemProvider, {Key? key}) : super(key: key) {
-    date = Date.tomorrow;
-  }
+  const AmountRow({
+    required this.itemId,
+    required this.date,
+    Key? key,
+  }) : super(key: key);
 
-  late final Date date;
-  final StateNotifierProvider<ItemState, Item> itemProvider;
+  final String itemId;
+  final Date date;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final stock = ref.watch(itemProvider).stock;
+    final item = ref.watch(itemProviderFamily(itemId)).item;
+
     return Row(
       children: [
         Flexible(
@@ -34,7 +32,9 @@ class AmountRow extends ConsumerWidget {
                 ),
               ),
               Text(
-                date == Date.today ? "${stock.today}P" : "${stock.tomorrow}P",
+                date == Date.today
+                    ? "${item.todayStock}P"
+                    : "${item.tomorrowStock}P",
                 style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
@@ -44,11 +44,24 @@ class AmountRow extends ConsumerWidget {
           ),
         ),
         Flexible(
-          flex: 12,
-          child: date == Date.today
-              ? AmountSlider.today(itemProvider)
-              : AmountSlider.tomorrow(itemProvider),
-        ),
+            flex: 12,
+            child: Slider(
+                value: date == Date.today
+                    ? item.todayStock.toDouble()
+                    : item.tomorrowStock.toDouble(),
+                min: 0,
+                max: 15,
+                onChanged: (value) {
+                  if (date == Date.today) {
+                    ref
+                        .read(itemProviderFamily(itemId).notifier)
+                        .changeTodayStock(value.ceil());
+                  } else {
+                    ref
+                        .read(itemProviderFamily(itemId).notifier)
+                        .changeTomorrowStock(value.ceil());
+                  }
+                })),
       ],
     );
   }

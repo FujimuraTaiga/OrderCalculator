@@ -6,28 +6,16 @@ part 'stock.g.dart';
 @freezed
 class Stock with _$Stock {
   const Stock._();
+
   const factory Stock({
-    required int today,
-    required int tomorrow,
-    required int dayAfter,
+    required String id,
+    required DateTime date,
+    required int amount,
   }) = _Stock;
+
   factory Stock.fromJson(Map<String, dynamic> json) => _$StockFromJson(json);
 
-  int get totalAmount => today + tomorrow + dayAfter;
-
-  Stock setToday(int newAmount) {
-    return Stock(today: newAmount, tomorrow: tomorrow, dayAfter: dayAfter);
-  }
-
-  Stock setTomorrow(int newAmount) {
-    return Stock(today: today, tomorrow: newAmount, dayAfter: dayAfter);
-  }
-
-  Stock setDayAfter(int newAmount) {
-    return Stock(today: today, tomorrow: tomorrow, dayAfter: newAmount);
-  }
-
-  Stock incrementOrder() {
-    return Stock(today: today, tomorrow: tomorrow, dayAfter: dayAfter + 1);
+  bool isToday(DateTime dateTime) {
+    return date.isAtSameMomentAs(dateTime);
   }
 }

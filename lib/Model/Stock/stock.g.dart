@@ -7,13 +7,13 @@ part of 'stock.dart';
 // **************************************************************************
 
 _$_Stock _$$_StockFromJson(Map<String, dynamic> json) => _$_Stock(
-      today: json['today'] as int,
-      tomorrow: json['tomorrow'] as int,
-      dayAfter: json['dayAfter'] as int,
+      id: json['id'] as String,
+      date: DateTime.parse(json['date'] as String),
+      amount: json['amount'] as int,
     );
 
 Map<String, dynamic> _$$_StockToJson(_$_Stock instance) => <String, dynamic>{
-      'today': instance.today,
-      'tomorrow': instance.tomorrow,
-      'dayAfter': instance.dayAfter,
+      'id': instance.id,
+      'date': instance.date.toIso8601String(),
+      'amount': instance.amount,
     };
