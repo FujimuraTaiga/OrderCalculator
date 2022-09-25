@@ -19,7 +19,10 @@ class Item with _$Item {
     @Default([]) List<Stock> stocks,
   }) = _Item;
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+  static const itemConverter = ItemConverter();
+
+  factory Item.fromJson(Map<String, dynamic> json) =>
+      itemConverter.fromJson(json);
 
   int get stockValue => (todayStock + dayAfterStock) * amountPerSales;
 
@@ -64,4 +67,22 @@ class Item with _$Item {
       stocks: stocks,
     );
   }
+}
+
+class ItemConverter implements JsonConverter<Item, Map<String, dynamic>> {
+  const ItemConverter();
+
+  @override
+  Item fromJson(Map<String, dynamic> json) {
+    return _$_Item(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      image: json['image'] as String,
+      sortOrder: json['sort_order'] as int,
+      amountPerSales: json['amount_per_sales'] as int,
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson(Item item) => item.toJson();
 }

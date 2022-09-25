@@ -19,7 +19,7 @@ class ItemService {
       'id': itemId,
       'name': name,
       'image': image,
-      'sort_order': sortOrder,
+      'sortOrder': sortOrder,
       'amountPerSales': amountPerSales,
     });
   }
@@ -41,35 +41,50 @@ class ItemService {
     required List<Item> items,
   }) async {
     for (final item in items) {
-      final stockId = fireStore
-          .collection('item')
-          .doc(item.id)
-          .collection('stock')
-          .doc()
-          .id;
-      await fireStore
-          .collection('item')
-          .doc(item.id)
-          .collection('stock')
-          .doc(stockId)
-          .set({
-        'id': stockId,
-        'date': Timestamp.fromDate(DateTime.now()),
-        'amount': item.todayStock,
-      });
+      final stocks = await readStocks(item.id);
+      if (stocks.isNotEmpty) {
+        final stock = stocks.first;
+
+        final stockDate = stock.date;
+        final today = DateTime.now();
+
+        if (stockDate.year == today.year &&
+            stockDate.month == today.month &&
+            stockDate.day == today.day) {
+          fireStore
+              .collection('stock')
+              .doc(item.id)
+              .collection('_')
+              .doc(stock.id)
+              .update({
+            'id': stock.id,
+            'date': Timestamp.fromDate(DateTime.now()),
+            'amount': item.todayStock,
+          });
+        }
+      } else {
+        final stockId =
+            fireStore.collection('stock').doc(item.id).collection('_').doc().id;
+        fireStore
+            .collection('stock')
+            .doc(item.id)
+            .collection('_')
+            .doc(stockId)
+            .set({
+          'id': stockId,
+          'date': Timestamp.fromDate(DateTime.now()),
+          'amount': item.todayStock,
+        });
+      }
     }
   }
 
-  Future<void> updateStock({
-    required String stockId,
-    required List<Item> items,
-  }) async {}
-
   Future<List<Stock>> readStocks(String itemId) async {
     final snapshot = await fireStore
-        .collection('item')
-        .doc(itemId)
         .collection('stock')
+        .doc(itemId)
+        .collection('_')
+        .orderBy('date', descending: true)
         .get();
     return snapshot.docs.map((stock) => Stock.fromJson(stock.data())).toList();
   }

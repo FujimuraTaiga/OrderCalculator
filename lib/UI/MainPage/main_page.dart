@@ -38,15 +38,15 @@ class MainPage extends ConsumerWidget {
                 child: const Text("決定"),
                 onPressed: () async {
                   final items = await ItemService().readItems();
-                  final List<StateNotifierProvider<ItemProvider, ItemState>>
-                      itemProviders = [];
-                  for (final item in items) {
-                    itemProviders.add(itemProviderFamily(item.id));
-                  }
+                  final itemProviders =
+                      items.map((item) => itemProviderFamily(item.id)).toList();
+
                   ItemService().createStock(
-                      items: itemProviders
-                          .map((provider) => ref.watch(provider).item)
-                          .toList());
+                    items: itemProviders
+                        .map((provider) => ref.watch(provider).item)
+                        .toList(),
+                  );
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
