@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:order_support/Model/Item/item.dart';
+import 'package:order_support/Provider/Item/item_provider.dart';
 import 'package:order_support/UI/MainPage/AmountCard/amount_row.dart';
 import 'package:order_support/UI/MainPage/AmountCard/item_image.dart';
 import 'package:order_support/Enum/date.dart';
 
-class ItemCard extends StatelessWidget {
-  const ItemCard(this.item, {Key? key}) : super(key: key);
-  final Item item;
+class ItemCard extends ConsumerWidget {
+  const ItemCard(this.itemId, {Key? key}) : super(key: key);
+  final String itemId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final item = ref.watch(itemProviderFamily(itemId)).item;
     return Card(
       elevation: 10,
       child: Padding(

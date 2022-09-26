@@ -4,14 +4,15 @@ import 'package:order_support/Provider/Sales/sales_provider.dart';
 import 'package:order_support/UI/MainPage/SalesCard/sales_card_row.dart';
 
 class SalesCard extends ConsumerWidget {
-  const SalesCard({Key? key}) : super(key: key);
+  const SalesCard({
+    required this.salesIds,
+    Key? key,
+  }) : super(key: key);
+
+  final List<String> salesIds;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final todaySales = ref.watch(todaySalesProvider);
-    final tomorrowSales = ref.watch(tomorrowSalesProvider);
-    final dayAfterSales = ref.watch(dayAfterSalesProvider);
-
     return Card(
       elevation: 10,
       child: Padding(
@@ -25,33 +26,45 @@ class SalesCard extends ConsumerWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SalesFormRow(
-              day: todaySales.date.day,
-              price: todaySales.price,
-              onChanged: (value) {
-                ref
-                    .read(todaySalesProvider.notifier)
-                    .changePrice(value.round() * 10000);
-              },
-            ),
-            SalesFormRow(
-              day: tomorrowSales.date.day,
-              price: tomorrowSales.price,
-              onChanged: (value) {
-                ref
-                    .read(tomorrowSalesProvider.notifier)
-                    .changePrice(value.round() * 10000);
-              },
-            ),
-            SalesFormRow(
-              day: dayAfterSales.date.day,
-              price: dayAfterSales.price,
-              onChanged: (value) {
-                ref
-                    .read(dayAfterSalesProvider.notifier)
-                    .changePrice(value.round() * 10000);
-              },
-            ),
+            ...salesIds.map((salesId) {
+              final sales = ref.watch(salesProviderFamily(salesId)).sales;
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    flex: 2,
+                    child: Text(
+                      "${sales.date.day}日",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 3,
+                    child: Text(
+                      "${(sales.price / 10000).round().toString()}万円",
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 7,
+                    child: Slider(
+                      value: (sales.price / 10000).toDouble(),
+                      min: 0,
+                      max: 70,
+                      onChanged: (value) {
+                        ref
+                            .read(salesProviderFamily(salesId).notifier)
+                            .changeSales((value * 10000).ceil());
+                      },
+                    ),
+                  ),
+                ],
+              );
+            }).toList(),
           ],
         ),
       ),

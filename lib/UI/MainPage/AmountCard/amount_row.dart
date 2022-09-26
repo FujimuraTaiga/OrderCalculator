@@ -34,7 +34,7 @@ class AmountRow extends ConsumerWidget {
               Text(
                 date == Date.today
                     ? "${item.todayStock}P"
-                    : "${item.tomorrowStock}P",
+                    : "${item.yesterdayOrderAmount}P",
                 style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
@@ -48,7 +48,7 @@ class AmountRow extends ConsumerWidget {
             child: Slider(
                 value: date == Date.today
                     ? item.todayStock.toDouble()
-                    : item.tomorrowStock.toDouble(),
+                    : item.yesterdayOrderAmount.toDouble(),
                 min: 0,
                 max: 15,
                 onChanged: (value) {
@@ -59,7 +59,7 @@ class AmountRow extends ConsumerWidget {
                   } else {
                     ref
                         .read(itemProviderFamily(itemId).notifier)
-                        .changeTomorrowStock(value.ceil());
+                        .changeDeliveredAmount(value.ceil());
                   }
                 })),
       ],

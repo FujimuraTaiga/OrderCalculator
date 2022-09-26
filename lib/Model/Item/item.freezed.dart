@@ -26,9 +26,8 @@ mixin _$Item {
   String get image => throw _privateConstructorUsedError;
   int get amountPerSales => throw _privateConstructorUsedError;
   int get todayStock => throw _privateConstructorUsedError;
-  int get tomorrowStock => throw _privateConstructorUsedError;
-  int get dayAfterStock => throw _privateConstructorUsedError;
-  List<Stock> get stocks => throw _privateConstructorUsedError;
+  int get yesterdayOrderAmount => throw _privateConstructorUsedError;
+  int get todayOrderAmount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,9 +45,8 @@ abstract class $ItemCopyWith<$Res> {
       String image,
       int amountPerSales,
       int todayStock,
-      int tomorrowStock,
-      int dayAfterStock,
-      List<Stock> stocks});
+      int yesterdayOrderAmount,
+      int todayOrderAmount});
 }
 
 /// @nodoc
@@ -67,9 +65,8 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
     Object? image = freezed,
     Object? amountPerSales = freezed,
     Object? todayStock = freezed,
-    Object? tomorrowStock = freezed,
-    Object? dayAfterStock = freezed,
-    Object? stocks = freezed,
+    Object? yesterdayOrderAmount = freezed,
+    Object? todayOrderAmount = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -96,18 +93,14 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
           ? _value.todayStock
           : todayStock // ignore: cast_nullable_to_non_nullable
               as int,
-      tomorrowStock: tomorrowStock == freezed
-          ? _value.tomorrowStock
-          : tomorrowStock // ignore: cast_nullable_to_non_nullable
+      yesterdayOrderAmount: yesterdayOrderAmount == freezed
+          ? _value.yesterdayOrderAmount
+          : yesterdayOrderAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      dayAfterStock: dayAfterStock == freezed
-          ? _value.dayAfterStock
-          : dayAfterStock // ignore: cast_nullable_to_non_nullable
+      todayOrderAmount: todayOrderAmount == freezed
+          ? _value.todayOrderAmount
+          : todayOrderAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      stocks: stocks == freezed
-          ? _value.stocks
-          : stocks // ignore: cast_nullable_to_non_nullable
-              as List<Stock>,
     ));
   }
 }
@@ -124,9 +117,8 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
       String image,
       int amountPerSales,
       int todayStock,
-      int tomorrowStock,
-      int dayAfterStock,
-      List<Stock> stocks});
+      int yesterdayOrderAmount,
+      int todayOrderAmount});
 }
 
 /// @nodoc
@@ -146,9 +138,8 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
     Object? image = freezed,
     Object? amountPerSales = freezed,
     Object? todayStock = freezed,
-    Object? tomorrowStock = freezed,
-    Object? dayAfterStock = freezed,
-    Object? stocks = freezed,
+    Object? yesterdayOrderAmount = freezed,
+    Object? todayOrderAmount = freezed,
   }) {
     return _then(_$_Item(
       id: id == freezed
@@ -175,18 +166,14 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
           ? _value.todayStock
           : todayStock // ignore: cast_nullable_to_non_nullable
               as int,
-      tomorrowStock: tomorrowStock == freezed
-          ? _value.tomorrowStock
-          : tomorrowStock // ignore: cast_nullable_to_non_nullable
+      yesterdayOrderAmount: yesterdayOrderAmount == freezed
+          ? _value.yesterdayOrderAmount
+          : yesterdayOrderAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      dayAfterStock: dayAfterStock == freezed
-          ? _value.dayAfterStock
-          : dayAfterStock // ignore: cast_nullable_to_non_nullable
+      todayOrderAmount: todayOrderAmount == freezed
+          ? _value.todayOrderAmount
+          : todayOrderAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      stocks: stocks == freezed
-          ? _value._stocks
-          : stocks // ignore: cast_nullable_to_non_nullable
-              as List<Stock>,
     ));
   }
 }
@@ -201,11 +188,9 @@ class _$_Item extends _Item {
       this.image = 'question',
       required this.amountPerSales,
       this.todayStock = 0,
-      this.tomorrowStock = 0,
-      this.dayAfterStock = 0,
-      final List<Stock> stocks = const []})
-      : _stocks = stocks,
-        super._();
+      this.yesterdayOrderAmount = 0,
+      this.todayOrderAmount = 0})
+      : super._();
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
 
@@ -225,21 +210,14 @@ class _$_Item extends _Item {
   final int todayStock;
   @override
   @JsonKey()
-  final int tomorrowStock;
+  final int yesterdayOrderAmount;
   @override
   @JsonKey()
-  final int dayAfterStock;
-  final List<Stock> _stocks;
-  @override
-  @JsonKey()
-  List<Stock> get stocks {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_stocks);
-  }
+  final int todayOrderAmount;
 
   @override
   String toString() {
-    return 'Item(id: $id, name: $name, sortOrder: $sortOrder, image: $image, amountPerSales: $amountPerSales, todayStock: $todayStock, tomorrowStock: $tomorrowStock, dayAfterStock: $dayAfterStock, stocks: $stocks)';
+    return 'Item(id: $id, name: $name, sortOrder: $sortOrder, image: $image, amountPerSales: $amountPerSales, todayStock: $todayStock, yesterdayOrderAmount: $yesterdayOrderAmount, todayOrderAmount: $todayOrderAmount)';
   }
 
   @override
@@ -256,10 +234,9 @@ class _$_Item extends _Item {
             const DeepCollectionEquality()
                 .equals(other.todayStock, todayStock) &&
             const DeepCollectionEquality()
-                .equals(other.tomorrowStock, tomorrowStock) &&
+                .equals(other.yesterdayOrderAmount, yesterdayOrderAmount) &&
             const DeepCollectionEquality()
-                .equals(other.dayAfterStock, dayAfterStock) &&
-            const DeepCollectionEquality().equals(other._stocks, _stocks));
+                .equals(other.todayOrderAmount, todayOrderAmount));
   }
 
   @JsonKey(ignore: true)
@@ -272,9 +249,8 @@ class _$_Item extends _Item {
       const DeepCollectionEquality().hash(image),
       const DeepCollectionEquality().hash(amountPerSales),
       const DeepCollectionEquality().hash(todayStock),
-      const DeepCollectionEquality().hash(tomorrowStock),
-      const DeepCollectionEquality().hash(dayAfterStock),
-      const DeepCollectionEquality().hash(_stocks));
+      const DeepCollectionEquality().hash(yesterdayOrderAmount),
+      const DeepCollectionEquality().hash(todayOrderAmount));
 
   @JsonKey(ignore: true)
   @override
@@ -297,9 +273,8 @@ abstract class _Item extends Item {
       final String image,
       required final int amountPerSales,
       final int todayStock,
-      final int tomorrowStock,
-      final int dayAfterStock,
-      final List<Stock> stocks}) = _$_Item;
+      final int yesterdayOrderAmount,
+      final int todayOrderAmount}) = _$_Item;
   const _Item._() : super._();
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
@@ -317,11 +292,9 @@ abstract class _Item extends Item {
   @override
   int get todayStock;
   @override
-  int get tomorrowStock;
+  int get yesterdayOrderAmount;
   @override
-  int get dayAfterStock;
-  @override
-  List<Stock> get stocks;
+  int get todayOrderAmount;
   @override
   @JsonKey(ignore: true)
   _$$_ItemCopyWith<_$_Item> get copyWith => throw _privateConstructorUsedError;

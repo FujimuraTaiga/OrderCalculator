@@ -105,8 +105,8 @@ class _$_ItemState extends _ItemState {
           amountPerSales: 1,
           sortOrder: 0,
           todayStock: 0,
-          tomorrowStock: 0,
-          dayAfterStock: 0)})
+          yesterdayOrderAmount: 0,
+          todayOrderAmount: 0)})
       : super._();
 
   @override

@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sales.dart';
+part of 'order.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Sales _$$_SalesFromJson(Map<String, dynamic> json) => _$_Sales(
+_$_Order _$$_OrderFromJson(Map<String, dynamic> json) => _$_Order(
       id: json['id'] as String,
       date: DateTime.parse(json['date'] as String),
-      price: json['price'] as int,
+      amount: json['amount'] as int,
     );
 
-Map<String, dynamic> _$$_SalesToJson(_$_Sales instance) => <String, dynamic>{
+Map<String, dynamic> _$$_OrderToJson(_$_Order instance) => <String, dynamic>{
       'id': instance.id,
       'date': instance.date.toIso8601String(),
-      'price': instance.price,
+      'amount': instance.amount,
     };

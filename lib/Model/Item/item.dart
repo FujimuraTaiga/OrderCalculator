@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:order_support/Model/Stock/stock.dart';
 
 part 'item.freezed.dart';
 part 'item.g.dart';
@@ -14,17 +13,14 @@ class Item with _$Item {
     @Default('question') String image,
     required int amountPerSales,
     @Default(0) int todayStock,
-    @Default(0) int tomorrowStock,
-    @Default(0) int dayAfterStock,
-    @Default([]) List<Stock> stocks,
+    @Default(0) int yesterdayOrderAmount,
+    @Default(0) int todayOrderAmount,
   }) = _Item;
 
-  static const itemConverter = ItemConverter();
+  factory Item.fromJson(Map<String, dynamic> json) => _$_Item.fromJson(json);
 
-  factory Item.fromJson(Map<String, dynamic> json) =>
-      itemConverter.fromJson(json);
-
-  int get stockValue => (todayStock + dayAfterStock) * amountPerSales;
+  int get stockValue =>
+      (todayStock + yesterdayOrderAmount + todayOrderAmount) * amountPerSales;
 
   Item changeTodayStock(int newAmount) {
     return Item(
@@ -34,13 +30,12 @@ class Item with _$Item {
       image: image,
       amountPerSales: amountPerSales,
       todayStock: newAmount,
-      tomorrowStock: tomorrowStock,
-      dayAfterStock: dayAfterStock,
-      stocks: stocks,
+      yesterdayOrderAmount: yesterdayOrderAmount,
+      todayOrderAmount: todayOrderAmount,
     );
   }
 
-  Item changeTomorrowStock(int newAmount) {
+  Item changeDeliveryAmount(int newAmount) {
     return Item(
       id: id,
       name: name,
@@ -48,13 +43,12 @@ class Item with _$Item {
       image: image,
       amountPerSales: amountPerSales,
       todayStock: todayStock,
-      tomorrowStock: newAmount,
-      dayAfterStock: dayAfterStock,
-      stocks: stocks,
+      yesterdayOrderAmount: newAmount,
+      todayOrderAmount: todayOrderAmount,
     );
   }
 
-  Item addDayAfterStock() {
+  Item changeOrderAmount(int newAmount) {
     return Item(
       id: id,
       name: name,
@@ -62,27 +56,34 @@ class Item with _$Item {
       image: image,
       amountPerSales: amountPerSales,
       todayStock: todayStock,
-      tomorrowStock: tomorrowStock,
-      dayAfterStock: dayAfterStock + 1,
-      stocks: stocks,
-    );
-  }
-}
-
-class ItemConverter implements JsonConverter<Item, Map<String, dynamic>> {
-  const ItemConverter();
-
-  @override
-  Item fromJson(Map<String, dynamic> json) {
-    return _$_Item(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      image: json['image'] as String,
-      sortOrder: json['sort_order'] as int,
-      amountPerSales: json['amount_per_sales'] as int,
+      yesterdayOrderAmount: yesterdayOrderAmount,
+      todayOrderAmount: newAmount,
     );
   }
 
-  @override
-  Map<String, dynamic> toJson(Item item) => item.toJson();
+  Item incrementOrderAmount() {
+    return Item(
+      id: id,
+      name: name,
+      sortOrder: sortOrder,
+      image: image,
+      amountPerSales: amountPerSales,
+      todayStock: todayStock,
+      yesterdayOrderAmount: yesterdayOrderAmount,
+      todayOrderAmount: todayOrderAmount + 1,
+    );
+  }
+
+  Item decrementOrderAmount() {
+    return Item(
+      id: id,
+      name: name,
+      sortOrder: sortOrder,
+      image: image,
+      amountPerSales: amountPerSales,
+      todayStock: todayStock,
+      yesterdayOrderAmount: yesterdayOrderAmount,
+      todayOrderAmount: todayOrderAmount - 1,
+    );
+  }
 }
