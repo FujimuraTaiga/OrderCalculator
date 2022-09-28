@@ -20,10 +20,14 @@ Item _$ItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Item {
-  String get image => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  Stock get stock => throw _privateConstructorUsedError;
+  int get sortOrder => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
   int get amountPerSales => throw _privateConstructorUsedError;
+  int get todayStock => throw _privateConstructorUsedError;
+  int get yesterdayOrderAmount => throw _privateConstructorUsedError;
+  int get todayOrderAmount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +38,15 @@ mixin _$Item {
 abstract class $ItemCopyWith<$Res> {
   factory $ItemCopyWith(Item value, $Res Function(Item) then) =
       _$ItemCopyWithImpl<$Res>;
-  $Res call({String image, String name, Stock stock, int amountPerSales});
-
-  $StockCopyWith<$Res> get stock;
+  $Res call(
+      {String id,
+      String name,
+      int sortOrder,
+      String image,
+      int amountPerSales,
+      int todayStock,
+      int yesterdayOrderAmount,
+      int todayOrderAmount});
 }
 
 /// @nodoc
@@ -49,36 +59,49 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? image = freezed,
+    Object? id = freezed,
     Object? name = freezed,
-    Object? stock = freezed,
+    Object? sortOrder = freezed,
+    Object? image = freezed,
     Object? amountPerSales = freezed,
+    Object? todayStock = freezed,
+    Object? yesterdayOrderAmount = freezed,
+    Object? todayOrderAmount = freezed,
   }) {
     return _then(_value.copyWith(
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      stock: stock == freezed
-          ? _value.stock
-          : stock // ignore: cast_nullable_to_non_nullable
-              as Stock,
+      sortOrder: sortOrder == freezed
+          ? _value.sortOrder
+          : sortOrder // ignore: cast_nullable_to_non_nullable
+              as int,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
       amountPerSales: amountPerSales == freezed
           ? _value.amountPerSales
           : amountPerSales // ignore: cast_nullable_to_non_nullable
               as int,
+      todayStock: todayStock == freezed
+          ? _value.todayStock
+          : todayStock // ignore: cast_nullable_to_non_nullable
+              as int,
+      yesterdayOrderAmount: yesterdayOrderAmount == freezed
+          ? _value.yesterdayOrderAmount
+          : yesterdayOrderAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      todayOrderAmount: todayOrderAmount == freezed
+          ? _value.todayOrderAmount
+          : todayOrderAmount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
-  }
-
-  @override
-  $StockCopyWith<$Res> get stock {
-    return $StockCopyWith<$Res>(_value.stock, (value) {
-      return _then(_value.copyWith(stock: value));
-    });
   }
 }
 
@@ -87,10 +110,15 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
   factory _$$_ItemCopyWith(_$_Item value, $Res Function(_$_Item) then) =
       __$$_ItemCopyWithImpl<$Res>;
   @override
-  $Res call({String image, String name, Stock stock, int amountPerSales});
-
-  @override
-  $StockCopyWith<$Res> get stock;
+  $Res call(
+      {String id,
+      String name,
+      int sortOrder,
+      String image,
+      int amountPerSales,
+      int todayStock,
+      int yesterdayOrderAmount,
+      int todayOrderAmount});
 }
 
 /// @nodoc
@@ -104,27 +132,47 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? image = freezed,
+    Object? id = freezed,
     Object? name = freezed,
-    Object? stock = freezed,
+    Object? sortOrder = freezed,
+    Object? image = freezed,
     Object? amountPerSales = freezed,
+    Object? todayStock = freezed,
+    Object? yesterdayOrderAmount = freezed,
+    Object? todayOrderAmount = freezed,
   }) {
     return _then(_$_Item(
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      stock: stock == freezed
-          ? _value.stock
-          : stock // ignore: cast_nullable_to_non_nullable
-              as Stock,
+      sortOrder: sortOrder == freezed
+          ? _value.sortOrder
+          : sortOrder // ignore: cast_nullable_to_non_nullable
+              as int,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
       amountPerSales: amountPerSales == freezed
           ? _value.amountPerSales
           : amountPerSales // ignore: cast_nullable_to_non_nullable
+              as int,
+      todayStock: todayStock == freezed
+          ? _value.todayStock
+          : todayStock // ignore: cast_nullable_to_non_nullable
+              as int,
+      yesterdayOrderAmount: yesterdayOrderAmount == freezed
+          ? _value.yesterdayOrderAmount
+          : yesterdayOrderAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      todayOrderAmount: todayOrderAmount == freezed
+          ? _value.todayOrderAmount
+          : todayOrderAmount // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -134,26 +182,42 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Item extends _Item {
   const _$_Item(
-      {required this.image,
+      {required this.id,
       required this.name,
-      required this.stock,
-      required this.amountPerSales})
+      required this.sortOrder,
+      this.image = 'question',
+      required this.amountPerSales,
+      this.todayStock = 0,
+      this.yesterdayOrderAmount = 0,
+      this.todayOrderAmount = 0})
       : super._();
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
 
   @override
-  final String image;
+  final String id;
   @override
   final String name;
   @override
-  final Stock stock;
+  final int sortOrder;
+  @override
+  @JsonKey()
+  final String image;
   @override
   final int amountPerSales;
+  @override
+  @JsonKey()
+  final int todayStock;
+  @override
+  @JsonKey()
+  final int yesterdayOrderAmount;
+  @override
+  @JsonKey()
+  final int todayOrderAmount;
 
   @override
   String toString() {
-    return 'Item(image: $image, name: $name, stock: $stock, amountPerSales: $amountPerSales)';
+    return 'Item(id: $id, name: $name, sortOrder: $sortOrder, image: $image, amountPerSales: $amountPerSales, todayStock: $todayStock, yesterdayOrderAmount: $yesterdayOrderAmount, todayOrderAmount: $todayOrderAmount)';
   }
 
   @override
@@ -161,21 +225,32 @@ class _$_Item extends _Item {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Item &&
-            const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.stock, stock) &&
+            const DeepCollectionEquality().equals(other.sortOrder, sortOrder) &&
+            const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality()
-                .equals(other.amountPerSales, amountPerSales));
+                .equals(other.amountPerSales, amountPerSales) &&
+            const DeepCollectionEquality()
+                .equals(other.todayStock, todayStock) &&
+            const DeepCollectionEquality()
+                .equals(other.yesterdayOrderAmount, yesterdayOrderAmount) &&
+            const DeepCollectionEquality()
+                .equals(other.todayOrderAmount, todayOrderAmount));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(stock),
-      const DeepCollectionEquality().hash(amountPerSales));
+      const DeepCollectionEquality().hash(sortOrder),
+      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(amountPerSales),
+      const DeepCollectionEquality().hash(todayStock),
+      const DeepCollectionEquality().hash(yesterdayOrderAmount),
+      const DeepCollectionEquality().hash(todayOrderAmount));
 
   @JsonKey(ignore: true)
   @override
@@ -192,22 +267,34 @@ class _$_Item extends _Item {
 
 abstract class _Item extends Item {
   const factory _Item(
-      {required final String image,
+      {required final String id,
       required final String name,
-      required final Stock stock,
-      required final int amountPerSales}) = _$_Item;
+      required final int sortOrder,
+      final String image,
+      required final int amountPerSales,
+      final int todayStock,
+      final int yesterdayOrderAmount,
+      final int todayOrderAmount}) = _$_Item;
   const _Item._() : super._();
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
 
   @override
-  String get image;
+  String get id;
   @override
   String get name;
   @override
-  Stock get stock;
+  int get sortOrder;
+  @override
+  String get image;
   @override
   int get amountPerSales;
+  @override
+  int get todayStock;
+  @override
+  int get yesterdayOrderAmount;
+  @override
+  int get todayOrderAmount;
   @override
   @JsonKey(ignore: true)
   _$$_ItemCopyWith<_$_Item> get copyWith => throw _privateConstructorUsedError;

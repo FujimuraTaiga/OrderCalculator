@@ -20,9 +20,9 @@ Stock _$StockFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Stock {
-  int get today => throw _privateConstructorUsedError;
-  int get tomorrow => throw _privateConstructorUsedError;
-  int get dayAfter => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
+  int get amount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +33,7 @@ mixin _$Stock {
 abstract class $StockCopyWith<$Res> {
   factory $StockCopyWith(Stock value, $Res Function(Stock) then) =
       _$StockCopyWithImpl<$Res>;
-  $Res call({int today, int tomorrow, int dayAfter});
+  $Res call({String id, DateTime date, int amount});
 }
 
 /// @nodoc
@@ -46,22 +46,22 @@ class _$StockCopyWithImpl<$Res> implements $StockCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? today = freezed,
-    Object? tomorrow = freezed,
-    Object? dayAfter = freezed,
+    Object? id = freezed,
+    Object? date = freezed,
+    Object? amount = freezed,
   }) {
     return _then(_value.copyWith(
-      today: today == freezed
-          ? _value.today
-          : today // ignore: cast_nullable_to_non_nullable
-              as int,
-      tomorrow: tomorrow == freezed
-          ? _value.tomorrow
-          : tomorrow // ignore: cast_nullable_to_non_nullable
-              as int,
-      dayAfter: dayAfter == freezed
-          ? _value.dayAfter
-          : dayAfter // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -72,7 +72,7 @@ abstract class _$$_StockCopyWith<$Res> implements $StockCopyWith<$Res> {
   factory _$$_StockCopyWith(_$_Stock value, $Res Function(_$_Stock) then) =
       __$$_StockCopyWithImpl<$Res>;
   @override
-  $Res call({int today, int tomorrow, int dayAfter});
+  $Res call({String id, DateTime date, int amount});
 }
 
 /// @nodoc
@@ -86,22 +86,22 @@ class __$$_StockCopyWithImpl<$Res> extends _$StockCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? today = freezed,
-    Object? tomorrow = freezed,
-    Object? dayAfter = freezed,
+    Object? id = freezed,
+    Object? date = freezed,
+    Object? amount = freezed,
   }) {
     return _then(_$_Stock(
-      today: today == freezed
-          ? _value.today
-          : today // ignore: cast_nullable_to_non_nullable
-              as int,
-      tomorrow: tomorrow == freezed
-          ? _value.tomorrow
-          : tomorrow // ignore: cast_nullable_to_non_nullable
-              as int,
-      dayAfter: dayAfter == freezed
-          ? _value.dayAfter
-          : dayAfter // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -110,23 +110,22 @@ class __$$_StockCopyWithImpl<$Res> extends _$StockCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Stock extends _Stock {
-  const _$_Stock(
-      {required this.today, required this.tomorrow, required this.dayAfter})
+  const _$_Stock({required this.id, required this.date, required this.amount})
       : super._();
 
   factory _$_Stock.fromJson(Map<String, dynamic> json) =>
       _$$_StockFromJson(json);
 
   @override
-  final int today;
+  final String id;
   @override
-  final int tomorrow;
+  final DateTime date;
   @override
-  final int dayAfter;
+  final int amount;
 
   @override
   String toString() {
-    return 'Stock(today: $today, tomorrow: $tomorrow, dayAfter: $dayAfter)';
+    return 'Stock(id: $id, date: $date, amount: $amount)';
   }
 
   @override
@@ -134,18 +133,18 @@ class _$_Stock extends _Stock {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Stock &&
-            const DeepCollectionEquality().equals(other.today, today) &&
-            const DeepCollectionEquality().equals(other.tomorrow, tomorrow) &&
-            const DeepCollectionEquality().equals(other.dayAfter, dayAfter));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.date, date) &&
+            const DeepCollectionEquality().equals(other.amount, amount));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(today),
-      const DeepCollectionEquality().hash(tomorrow),
-      const DeepCollectionEquality().hash(dayAfter));
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(date),
+      const DeepCollectionEquality().hash(amount));
 
   @JsonKey(ignore: true)
   @override
@@ -162,19 +161,19 @@ class _$_Stock extends _Stock {
 
 abstract class _Stock extends Stock {
   const factory _Stock(
-      {required final int today,
-      required final int tomorrow,
-      required final int dayAfter}) = _$_Stock;
+      {required final String id,
+      required final DateTime date,
+      required final int amount}) = _$_Stock;
   const _Stock._() : super._();
 
   factory _Stock.fromJson(Map<String, dynamic> json) = _$_Stock.fromJson;
 
   @override
-  int get today;
+  String get id;
   @override
-  int get tomorrow;
+  DateTime get date;
   @override
-  int get dayAfter;
+  int get amount;
   @override
   @JsonKey(ignore: true)
   _$$_StockCopyWith<_$_Stock> get copyWith =>

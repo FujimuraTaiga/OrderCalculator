@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:order_support/Model/Stock/stock.dart';
 
 part 'item.freezed.dart';
 part 'item.g.dart';
@@ -8,19 +7,83 @@ part 'item.g.dart';
 class Item with _$Item {
   const Item._();
   const factory Item({
-    required String image,
+    required String id,
     required String name,
-    required Stock stock,
+    required int sortOrder,
+    @Default('question') String image,
     required int amountPerSales,
+    @Default(0) int todayStock,
+    @Default(0) int yesterdayOrderAmount,
+    @Default(0) int todayOrderAmount,
   }) = _Item;
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+  factory Item.fromJson(Map<String, dynamic> json) => _$_Item.fromJson(json);
 
-  int get stockValue => stock.totalAmount * amountPerSales;
+  int get stockValue =>
+      (todayStock + yesterdayOrderAmount + todayOrderAmount) * amountPerSales;
 
-  int amountOfNeed(int sumOfSales) {
-    int totalStock = stock.today + stock.tomorrow;
+  Item changeTodayStock(int newAmount) {
+    return Item(
+      id: id,
+      name: name,
+      sortOrder: sortOrder,
+      image: image,
+      amountPerSales: amountPerSales,
+      todayStock: newAmount,
+      yesterdayOrderAmount: yesterdayOrderAmount,
+      todayOrderAmount: todayOrderAmount,
+    );
+  }
 
-    return (sumOfSales / amountPerSales).ceil() - totalStock;
+  Item changeDeliveryAmount(int newAmount) {
+    return Item(
+      id: id,
+      name: name,
+      sortOrder: sortOrder,
+      image: image,
+      amountPerSales: amountPerSales,
+      todayStock: todayStock,
+      yesterdayOrderAmount: newAmount,
+      todayOrderAmount: todayOrderAmount,
+    );
+  }
+
+  Item changeOrderAmount(int newAmount) {
+    return Item(
+      id: id,
+      name: name,
+      sortOrder: sortOrder,
+      image: image,
+      amountPerSales: amountPerSales,
+      todayStock: todayStock,
+      yesterdayOrderAmount: yesterdayOrderAmount,
+      todayOrderAmount: newAmount,
+    );
+  }
+
+  Item incrementOrderAmount() {
+    return Item(
+      id: id,
+      name: name,
+      sortOrder: sortOrder,
+      image: image,
+      amountPerSales: amountPerSales,
+      todayStock: todayStock,
+      yesterdayOrderAmount: yesterdayOrderAmount,
+      todayOrderAmount: todayOrderAmount + 1,
+    );
+  }
+
+  Item decrementOrderAmount() {
+    return Item(
+      id: id,
+      name: name,
+      sortOrder: sortOrder,
+      image: image,
+      amountPerSales: amountPerSales,
+      todayStock: todayStock,
+      yesterdayOrderAmount: yesterdayOrderAmount,
+      todayOrderAmount: todayOrderAmount - 1,
+    );
   }
 }
