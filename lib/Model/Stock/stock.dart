@@ -1,41 +1,71 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'stock.freezed.dart';
-part 'stock.g.dart';
+class Stock {
+  final String itemId;
+  final String id;
+  final DateTime date;
+  final int amount;
 
-@freezed
-class Stock with _$Stock {
-  const Stock._();
-
-  const factory Stock({
-    required String id,
-    required DateTime date,
-    required int amount,
-  }) = _Stock;
-
-  static const stockConverter = StockConverter();
-
-  factory Stock.fromJson(Map<String, dynamic> json) =>
-      stockConverter.fromJson(json);
-
-  bool isToday(DateTime dateTime) {
-    return date.isAtSameMomentAs(dateTime);
-  }
-}
-
-class StockConverter implements JsonConverter<Stock, Map<String, dynamic>> {
-  const StockConverter();
+  const Stock({
+    required this.itemId,
+    required this.id,
+    required this.date,
+    required this.amount,
+  });
 
   @override
-  Stock fromJson(Map<String, dynamic> json) {
-    return _$_Stock(
-      id: json['id'] as String,
-      date: (json['date'] as Timestamp).toDate(),
-      amount: json['amount'] as int,
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Stock &&
+          runtimeType == other.runtimeType &&
+          itemId == other.itemId &&
+          id == other.id &&
+          date == other.date &&
+          amount == other.amount);
+
+  @override
+  int get hashCode =>
+      itemId.hashCode ^ id.hashCode ^ date.hashCode ^ amount.hashCode;
+
+  @override
+  String toString() {
+    return 'Stock{' +
+        ' itemId: $itemId,' +
+        ' id: $id,' +
+        ' date: $date,' +
+        ' amount: $amount,' +
+        '}';
+  }
+
+  Stock copyWith({
+    String? itemId,
+    String? id,
+    DateTime? date,
+    int? amount,
+  }) {
+    return Stock(
+      itemId: itemId ?? this.itemId,
+      id: id ?? this.id,
+      date: date ?? this.date,
+      amount: amount ?? this.amount,
     );
   }
 
-  @override
-  Map<String, dynamic> toJson(Stock stock) => stock.toJson();
+  Map<String, dynamic> toMap() {
+    return {
+      'itemId': this.itemId,
+      'id': this.id,
+      'date': this.date,
+      'amount': this.amount,
+    };
+  }
+
+  factory Stock.fromMap(Map<String, dynamic> map) {
+    return Stock(
+      itemId: map['itemId'] as String,
+      id: map['id'] as String,
+      date: (map['date'] as Timestamp).toDate(),
+      amount: map['amount'] as int,
+    );
+  }
 }

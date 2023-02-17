@@ -1,41 +1,83 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'order.freezed.dart';
-part 'order.g.dart';
+class Order {
+  final String supplierId;
+  final String itemId;
+  final String id;
+  final DateTime date;
+  final int amount;
 
-@freezed
-class Order with _$Order {
-  const Order._();
-
-  const factory Order({
-    required String id,
-    required DateTime date,
-    required int amount,
-  }) = _Order;
-
-  static const orderConverter = OrderConverter();
-
-  factory Order.fromJson(Map<String, dynamic> json) =>
-      orderConverter.fromJson(json);
-
-  bool isToday(DateTime dateTime) {
-    return date.isAtSameMomentAs(dateTime);
-  }
-}
-
-class OrderConverter implements JsonConverter<Order, Map<String, dynamic>> {
-  const OrderConverter();
+  const Order({
+    required this.supplierId,
+    required this.itemId,
+    required this.id,
+    required this.date,
+    required this.amount,
+  });
 
   @override
-  Order fromJson(Map<String, dynamic> json) {
-    return _$_Order(
-      id: json['id'] as String,
-      date: (json['date'] as Timestamp).toDate(),
-      amount: json['amount'] as int,
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Order &&
+          runtimeType == other.runtimeType &&
+          supplierId == other.supplierId &&
+          itemId == other.itemId &&
+          id == other.id &&
+          date == other.date &&
+          amount == other.amount);
+
+  @override
+  int get hashCode =>
+      supplierId.hashCode ^
+      itemId.hashCode ^
+      id.hashCode ^
+      date.hashCode ^
+      amount.hashCode;
+
+  @override
+  String toString() {
+    return 'OrderAmount{' +
+        ' supplierId: $supplierId,' +
+        ' itemId: $itemId,' +
+        ' id: $id,' +
+        ' date: $date,' +
+        ' amount: $amount,' +
+        '}';
+  }
+
+  Order copyWith({
+    String? supplierId,
+    String? itemId,
+    String? id,
+    DateTime? date,
+    int? amount,
+  }) {
+    return Order(
+      supplierId: supplierId ?? this.supplierId,
+      itemId: itemId ?? this.itemId,
+      id: id ?? this.id,
+      date: date ?? this.date,
+      amount: amount ?? this.amount,
     );
   }
 
-  @override
-  Map<String, dynamic> toJson(Order order) => order.toJson();
+  Map<String, dynamic> toMap() {
+    return {
+      'supplierId': supplierId,
+      'itemId': itemId,
+      'id': id,
+      'date': Timestamp.fromDate(date),
+      'amount': amount,
+    };
+  }
+
+  factory Order.fromMap(Map<String, dynamic> map) {
+    return Order(
+      supplierId: map['supplierId'],
+      itemId: map['itemId'],
+      id: map['id'] as String,
+      date: (map['date'] as Timestamp).toDate(),
+      amount: map['amount'] as int,
+    );
+  }
 }

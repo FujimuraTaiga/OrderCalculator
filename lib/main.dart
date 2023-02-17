@@ -10,11 +10,21 @@ Future<void> main() async {
     ProviderScope(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const MainPage(),
+        home: MainPage(),
         theme: ThemeData(
-          cardTheme: const CardTheme(
-            elevation: 10,
-            shadowColor: Colors.lightBlueAccent,
+          appBarTheme: AppBarTheme(color: Colors.amber),
+          tabBarTheme: TabBarTheme(
+            labelColor: Colors.white,
+            overlayColor: MaterialStateProperty.all(Colors.white),
+          ),
+          indicatorColor: Colors.white,
+          scaffoldBackgroundColor: Colors.grey.shade300,
+          cardTheme: CardTheme(
+            color: Colors.white,
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.amber)),
           ),
         ),
       ),
