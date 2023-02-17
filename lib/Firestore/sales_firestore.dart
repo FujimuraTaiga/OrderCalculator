@@ -1,33 +1,67 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../Model/Sales/sales.dart';
+import 'package:order_support/Model/Sales/sales.dart';
+import 'package:order_support/Model/Sales/sales_list.dart';
 
 class SalesFireStore {
-  final fireStore = FirebaseFirestore.instance;
+  static final fireStore = FirebaseFirestore.instance;
+  static final storeId = "7QwYx0KaG9fr4ptrSPg6";
 
-  Future<void> updateSales(Sales sales) async {
-    await fireStore.collection('sales').doc(sales.id).update({
-      'id': sales.id,
-      'date': Timestamp.fromDate(sales.date),
-      'price': sales.price,
-    });
+  static Future<void> create(Sales sales) async {
+    final salesId = await fireStore
+        .collection('store')
+        .doc(storeId)
+        .collection('sales')
+        .doc()
+        .id;
+
+    await fireStore
+        .collection('store')
+        .doc(storeId)
+        .collection('sales')
+        .doc(salesId)
+        .set(sales.copyWith(id: salesId).toMap());
   }
 
-  Future<Sales> readSales(String salesId) async {
-    final snapshot = await fireStore.collection('sales').doc(salesId).get();
-    return Sales.fromJson(snapshot.data()!);
+  static Future<SalesList> findAll() async {
+    final snapshot = await fireStore
+        .collection('store')
+        .doc(storeId)
+        .collection('sales')
+        .orderBy('date')
+        .get();
+    final salesList =
+        snapshot.docs.map((sales) => Sales.fromMap(sales.data())).toList();
+    return SalesList(salesList);
   }
 
-  Future<List<Sales>> readSalesList() async {
-    final snapshot =
-        await fireStore.collection('sales').orderBy('date').limit(3).get();
-    return snapshot.docs.map((sales) => Sales.fromJson(sales.data())).toList();
+  static Future<Sales> findById({required String salesId}) async {
+    final snapshot = await fireStore
+        .collection('store')
+        .doc(storeId)
+        .collection('sales')
+        .doc(salesId)
+        .get();
+    return Sales.fromMap(snapshot.data()!);
   }
 
-  Future<int> totalSalesForThreeDays() async {
-    final salesList = await readSalesList();
-    int total = 0;
-    salesList.map((sales) => total += sales.price);
-    return total;
+  static Future<void> update({required Sales sales}) async {
+    await fireStore
+        .collection('store')
+        .doc(storeId)
+        .collection('sales')
+        .doc(sales.id)
+        .update(sales.toMap());
+  }
+
+  static Future<void> delete({
+    required String salesId,
+  }) async {
+    await fireStore
+        .collection('store')
+        .doc(storeId)
+        .collection('sales')
+        .doc(salesId)
+        .delete();
   }
 }
